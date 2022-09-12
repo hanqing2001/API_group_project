@@ -2,18 +2,18 @@ package com.bnta.recipe_API.models;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @Column
     private String name;
 
     public User(String name){
-        this.id = id;
+        this.userId = userId;
         this.name = name;
     }
 
@@ -21,12 +21,12 @@ public class User {
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long id) {
+        this.userId = userId;
     }
 
     public String getName() {
