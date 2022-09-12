@@ -2,23 +2,49 @@ package com.bnta.recipe_API.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
+//@Entity is a table named = "..." :
+@Entity(name = "recipes")
 public class Recipe {
 
 //    PROPERTIES:::::::::::::;
 
-    private long id;
+    //@Id ...
+    @Id
+    //@GeneratedValue... automatically generating an id for each property that increments every time as more are added
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column adds a column the name(field) in the table:
+    @Column
+    private Long id;
+    @Column
     private String name;
+
+    //Float primitive data type?? To allow decimals of e.g. 3.5 rating
+    @Column
     private int averageRating;
 
+    // @OnwToMany means The relationship between Recipe + Ingredients - Each Recipe can have many Ingredients.
+    // Can ingredients have many recipes?? (ManyToMany)
+
+    //@OneToMany(mappedBy = "...") - Annotation with attribute
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+
+    //@JsonIgnoreProperties TO AVOID INFINITE dependencies LOOP ISSUE.
+//    @JsonIgnoreProperties({"recipe", "ingredients"})
     private List<Ingredient> ingredients;
+    @Column
     private int time;
+    @Column
     private int calories;
+    @Column
     private int servings;
+    @Column
     private boolean isVegan;
+    @Column
     private boolean isVegetarian;
+    @Column
     private boolean isGlutenFree;
 
 //    CONSTRUCTOR::::::::::
@@ -36,7 +62,7 @@ public class Recipe {
         this.isGlutenFree = isGlutenFree;
     }
 
-    // no arg constructor
+    // no arg constructor/ empty constructor
     public Recipe(){
 
     }
@@ -44,7 +70,8 @@ public class Recipe {
 //    GETTERS+SETTERS::::::::::
 
 
-    public long getId() {
+    //For the id property:
+    public Long getId() {
         return id;
     }
 
@@ -52,6 +79,7 @@ public class Recipe {
         this.id = id;
     }
 
+    //For the Name Property:
     public String getName() {
         return name;
     }
@@ -60,6 +88,7 @@ public class Recipe {
         this.name = name;
     }
 
+    //For the AverageRating property:
     public int getAverageRating() {
         return averageRating;
     }
@@ -68,6 +97,7 @@ public class Recipe {
         this.averageRating = averageRating;
     }
 
+    //For the list of Ingredients property:
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
@@ -76,6 +106,7 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    //For the time (recipe duration) property:
     public int getTime() {
         return time;
     }
@@ -84,6 +115,7 @@ public class Recipe {
         this.time = time;
     }
 
+    //For the calories' property:
     public int getCalories() {
         return calories;
     }
@@ -92,6 +124,7 @@ public class Recipe {
         this.calories = calories;
     }
 
+    //For the servings' property:
     public int getServings() {
         return servings;
     }
@@ -100,6 +133,7 @@ public class Recipe {
         this.servings = servings;
     }
 
+    //For the isVegan property:
     public boolean isVegan() {
         return isVegan;
     }
@@ -108,6 +142,7 @@ public class Recipe {
         isVegan = vegan;
     }
 
+    //For the isVegetarian property:
     public boolean isVegetarian() {
         return isVegetarian;
     }
@@ -116,6 +151,7 @@ public class Recipe {
         isVegetarian = vegetarian;
     }
 
+    //For the isGluten property:
     public boolean isGlutenFree() {
         return isGlutenFree;
     }
@@ -124,7 +160,23 @@ public class Recipe {
         isGlutenFree = glutenFree;
     }
 
+    // FOR READABILITY PURPOSES. WITHOUT @OVERRIDE, THE DATA WILL SHOW AS NUMBERS (COMPUTER LANG) e.g. banana could be written as 6Kbceq2 etc
 
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", averageRating=" + averageRating +
+                ", ingredients=" + ingredients +
+                ", time=" + time +
+                ", calories=" + calories +
+                ", servings=" + servings +
+                ", isVegan=" + isVegan +
+                ", isVegetarian=" + isVegetarian +
+                ", isGlutenFree=" + isGlutenFree +
+                '}';
+    }
 
 
 }
