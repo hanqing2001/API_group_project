@@ -22,8 +22,8 @@ public class IngredientService {
         return ingredient;
     }
 
-    public Ingredient removeAnIngredient (Ingredient ingredient){ingredientRepository.delete(ingredient);
-        return ingredient;
+    public Ingredient removeAnIngredient (Ingredient ingredient){ingredientRepository.deleteById(id);
+
 
 //    getAllIngredients: List<Ingredients>
 //+ addNewIngredient: List<Ingredients>
