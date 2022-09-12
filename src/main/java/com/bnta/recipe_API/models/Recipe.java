@@ -12,6 +12,7 @@ public class Recipe {
     private long id;
     private String name;
     private int averageRating;
+
     private List<Ingredient> ingredients;
     private int time;
     private int calories;
@@ -35,6 +36,7 @@ public class Recipe {
         this.isGlutenFree = isGlutenFree;
     }
 
+    // no arg constructor
     public Recipe(){
 
     }
