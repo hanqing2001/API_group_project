@@ -3,6 +3,7 @@ package com.bnta.recipe_API.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 //@Entity is a table named = "..." :
@@ -29,17 +30,16 @@ public class Recipe {
     // Can ingredients have many recipes?? (ManyToMany)
 
     //@OneToMany(mappedBy = "...") - Annotation with attribute
-    @ManyToMany
-    @JoinTable (
-            name = "ingredients_recipes",
-            joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "ingredients_id", nullable = false)}
-
-
-    )
 
     //@JsonIgnoreProperties TO AVOID INFINITE dependencies LOOP ISSUE.
 //    @JsonIgnoreProperties({"recipe", "ingredients"})
+    @ManyToMany
+    @JoinTable(
+            name = "ingredients_recipe",
+            joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
+            inverseJoinColumns =  {@JoinColumn(name = "ingredients_id", nullable = false)}
+    )
+    @JsonIgnoreProperties ({"recipes"})
     private List<Ingredient> ingredients;
     @Column
     private int time;
@@ -53,19 +53,50 @@ public class Recipe {
     private boolean isVegetarian;
     @Column
     private boolean isGlutenFree;
+    @ManyToMany
+    @JoinTable(
+            name = "users_recipes",
+            joinColumns = {@JoinColumn(name = "recipe_id",nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id",nullable = false)}
+    )
+    @JsonIgnoreProperties({"favRecipes"})
+    private List<User> favUsers;
+
+    private float noRatedUsers;
 
 //    CONSTRUCTOR::::::::::
 
-    public Recipe(String name, float averageRating,int time, int calories, int servings, boolean isVegan, boolean isVegetarian, boolean isGlutenFree) {
+    public Recipe(String name, float averageRating,int time, int calories, int servings,
+                  List<Ingredient> ingredients) {
         this.name = name;
         this.averageRating = averageRating;
         this.time = time;
         this.calories = calories;
         this.servings = servings;
-        this.isVegan = isVegan;
-        this.isVegetarian = isVegetarian;
-        this.isGlutenFree = isGlutenFree;
+        this.favUsers = new ArrayList<>();
+        this.noRatedUsers = 0;
+        this.isVegan = true;
+        this.isVegetarian = true;
+        this.isGlutenFree = true;
+        this.ingredients = ingredients;
+        setRequirements(); //calls method once ingredients are set
+        // this needs to be called every time an ingredient is added
     }
+     public void setRequirements(){
+        for (Ingredient ingredient: ingredients){
+            if (!ingredient.isGlutenFree()){
+                this.isGlutenFree = false;
+            }
+           if (!ingredient.isVegan()){
+               this.isVegan = false;
+               this.isVegetarian = false;
+           }
+           if (!ingredient.isVegetarian()){
+               this.isVegetarian = false;
+           }
+        }
+
+     }
 
     // no arg constructor/ empty constructor
     public Recipe(){
@@ -163,6 +194,26 @@ public class Recipe {
 
     public void setGlutenFree(boolean glutenFree) {
         isGlutenFree = glutenFree;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<User> getFavUsers() {
+        return favUsers;
+    }
+
+    public void setFavUsers(List<User> favUsers) {
+        this.favUsers = favUsers;
+    }
+
+    public float getNoRatedUsers() {
+        return noRatedUsers;
+    }
+
+    public void setNoRatedUsers(float noRatedUsers) {
+        this.noRatedUsers = noRatedUsers;
     }
 
     // FOR READABILITY PURPOSES. WITHOUT @OVERRIDE, THE DATA WILL SHOW AS NUMBERS (COMPUTER LANG) e.g. banana could be written as 6Kbceq2 etc
