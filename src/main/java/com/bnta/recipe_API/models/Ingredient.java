@@ -18,13 +18,19 @@ public class Ingredient {
     private boolean isVegan;
     @Column
     private boolean isVegetarian;
-    @Column
-    private Allergen allergensContained;
-    @ManyToMany
-    @JsonIgnoreProperties({"ingredient"})
-    private List<Recipe> recipies;
 
-    public void Ingredient(){}
+    private Allergen allergensContained;
+
+ @ManyToMany
+ @JoinTable(
+         name = "ingredients_recipe",
+         joinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)},
+         inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
+ )
+ @JsonIgnoreProperties ({"ingredients"})
+ private List<Recipe> recipes;
+
+    public Ingredient(){}
 
     public Ingredient(String name, boolean isGlutenFree, boolean isVegan, boolean isVegetarian, Allergen allergensContained) {
         this.name = name;
