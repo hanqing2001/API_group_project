@@ -42,4 +42,10 @@ public class UserService {
         Recipe targetRecipe = recipeRepository.findById(recipeId).get();
         targetUser.addRecipeToUserFavs(targetRecipe);
     }
+
+    public void addRating(Long id, Float rating){
+        Recipe targetRecipe = recipeRepository.findById(id).get();
+        Float newAverageRating = (rating + (targetRecipe.getNoRatedUsers() * targetRecipe.getAverageRating() ) / (1 + targetRecipe.getNoRatedUsers() ) );
+        targetRecipe.setAverageRating(newAverageRating);
+    }
 }

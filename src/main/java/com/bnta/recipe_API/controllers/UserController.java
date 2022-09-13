@@ -52,4 +52,9 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
+//    @PostMapping("/rating")
+//    public ResponseEntity<Recipe> addRating(
+//            @RequestParam
+//    )
+
 }

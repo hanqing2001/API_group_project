@@ -62,6 +62,8 @@ public class Recipe {
     @JsonIgnoreProperties({"favRecipes"})
     private List<User> favUsers;
 
+    private float noRatedUsers;
+
 //    CONSTRUCTOR::::::::::
 
     public Recipe(String name, float averageRating,int time, int calories, int servings, boolean isVegan, boolean isVegetarian, boolean isGlutenFree) {
@@ -74,6 +76,7 @@ public class Recipe {
         this.isVegetarian = isVegetarian;
         this.isGlutenFree = isGlutenFree;
         this.favUsers = new ArrayList<>();
+        this.noRatedUsers = 0;
     }
 
     // no arg constructor/ empty constructor
@@ -186,8 +189,13 @@ public class Recipe {
         this.favUsers = favUsers;
     }
 
+    public float getNoRatedUsers() {
+        return noRatedUsers;
+    }
 
-
+    public void setNoRatedUsers(float noRatedUsers) {
+        this.noRatedUsers = noRatedUsers;
+    }
 
     // FOR READABILITY PURPOSES. WITHOUT @OVERRIDE, THE DATA WILL SHOW AS NUMBERS (COMPUTER LANG) e.g. banana could be written as 6Kbceq2 etc
 
