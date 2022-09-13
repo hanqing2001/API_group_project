@@ -3,6 +3,7 @@ package com.bnta.recipe_API.controllers;
 import com.bnta.recipe_API.models.Ingredient;
 import com.bnta.recipe_API.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,17 +29,12 @@ public class IngredientController {
         return new ResponseEntity<>(savedIngredient, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @PutMapping
     public ResponseEntity<String> removeAnIngredient(Long id) {
-        String ingredient = ingregr
+        ingredientService.removeAnIngredient(id);
+        String ingredient = ingredientService.getIngredientById(id).get().getName();
         String message = String.format("This %s has been removed,", ingredient);
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Long> removeAnIngredient2(@PathVariable(value = "id") Long ingredientId) {
-        return ResponseEntity.OK(ingredientId);
-
-
-    }
 }

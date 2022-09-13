@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IngredientService {
@@ -24,5 +25,9 @@ public class IngredientService {
 
     public void removeAnIngredient(Long id) {
         ingredientRepository.deleteById(id);
+    }
+
+    public Optional<Ingredient> getIngredientById(Long id){
+        return ingredientRepository.findById(id);
     }
 }
