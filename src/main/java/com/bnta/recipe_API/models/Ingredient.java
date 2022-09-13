@@ -10,27 +10,25 @@ public class Ingredient {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column (name = "name")
     private String name;
-    @Column
+    @Column (name = "is_gluten_free")
     private boolean isGlutenFree;
-    @Column
+    @Column (name = "is_vegan")
     private boolean isVegan;
-    @Column
+    @Column (name = "is_vegetarian")
     private boolean isVegetarian;
 
-    @Column
     private Allergen allergensContained;
 
-
-    @ManyToMany
-    @JoinTable(
-         name = "ingredients_recipe",
+ @ManyToMany
+ @JoinTable(
+         name = "ingredients_recipes",
          joinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)},
          inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
-    )
-    @JsonIgnoreProperties ({"ingredients"})
-    private List<Recipe> recipes;
+ )
+ @JsonIgnoreProperties ({"ingredients"})
+ private List<Recipe> recipes;
 
     public Ingredient(){}
 
