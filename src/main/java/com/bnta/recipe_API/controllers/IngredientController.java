@@ -26,7 +26,7 @@ public class IngredientController {
     @PostMapping
     public ResponseEntity<Ingredient> submitNewIngredient(@RequestBody Ingredient ingredient) {
         Ingredient savedIngredient = ingredientService.saveIngredient(ingredient);
-        return new ResponseEntity<>(savedIngredient, HttpStatus.CREATED);
+        return new ResponseEntity<>(ingredient, HttpStatus.CREATED);
     }
 
     @PutMapping

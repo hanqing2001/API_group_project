@@ -30,10 +30,17 @@ public class Recipe {
     // Can ingredients have many recipes?? (ManyToMany)
 
     //@OneToMany(mappedBy = "...") - Annotation with attribute
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+
 
     //@JsonIgnoreProperties TO AVOID INFINITE dependencies LOOP ISSUE.
 //    @JsonIgnoreProperties({"recipe", "ingredients"})
+    @ManyToMany
+    @JoinTable(
+            name = "ingredients_recipe",
+            joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
+            inverseJoinColumns =  {@JoinColumn(name = "ingredients_id", nullable = false)}
+    )
+    @JsonIgnoreProperties ({"recipes"})
     private List<Ingredient> ingredients;
     @Column
     private int time;
