@@ -48,6 +48,7 @@ public class UserController {
             @RequestParam Long recipeId){
         userService.addRecipeToUserFavs(recipeId,userId);
         User user = userRepository.findById(userId).get();
+        userRepository.save(user);
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
