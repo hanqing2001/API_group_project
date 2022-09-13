@@ -17,20 +17,28 @@ public class IngredientController {
     IngredientService ingredientService;
 
     @GetMapping
-    public ResponseEntity<List<Ingredient>> displayAllIngredients(){
+    public ResponseEntity<List<Ingredient>> displayAllIngredients() {
         List<Ingredient> ingredients = ingredientService.getAllIngredients();
         return new ResponseEntity<>(ingredients, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Ingredient> submitNewIngredient;
+    public ResponseEntity<Ingredient> submitNewIngredient(@RequestBody Ingredient ingredient) {
+        Ingredient savedIngredient = ingredientService.saveIngredient(ingredient);
+        return new ResponseEntity<>(savedIngredient, HttpStatus.CREATED);
+    }
 
-    @DeleteMapping
-    public
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> removeAnIngredient(Long id) {
+        String ingredient = ingregr
+        String message = String.format("This %s has been removed,", ingredient);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
 
-//    + submitNewlngredient(): Response Entity<List<Recipe> >
-//            • displayAllingredients): ResponseEntity<List<Ingredient>>
-//+ removeAnIngredient®: ResponseEntity<String>
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Long> removeAnIngredient2(@PathVariable(value = "id") Long ingredientId) {
+        return ResponseEntity.OK(ingredientId);
 
 
+    }
 }

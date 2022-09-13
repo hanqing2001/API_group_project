@@ -1,13 +1,28 @@
 package com.bnta.recipe_API.models;
 
-public class Ingredient {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity(name = "ingredients")
+public class Ingredient {
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
+    @Column
     private String name;
+    @Column
     private boolean isGlutenFree;
+    @Column
     private boolean isVegan;
+    @Column
     private boolean isVegetarian;
+    @Column
     private Allergen allergensContained;
+    @ManyToMany
+    @JsonIgnoreProperties({"ingredient"})
+    private List<Recipe> recipies;
 
     public void Ingredient(){}
 

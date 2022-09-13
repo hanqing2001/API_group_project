@@ -17,15 +17,12 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
-    public Ingredient saveIngredient(Ingredient ingredient){
+    public Ingredient saveIngredient(Ingredient ingredient) {
         ingredientRepository.save(ingredient);
         return ingredient;
     }
 
-    public Ingredient removeAnIngredient (Ingredient ingredient){ingredientRepository.deleteById(id);
-
-
-//    getAllIngredients: List<Ingredients>
-//+ addNewIngredient: List<Ingredients>
-//+ removeAningredient: Ingredient
+    public void removeAnIngredient(Long id) {
+        ingredientRepository.deleteById(id);
+    }
 }
