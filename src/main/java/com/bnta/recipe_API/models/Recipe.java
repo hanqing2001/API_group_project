@@ -25,7 +25,7 @@ public class Recipe {
     @Column
     private float averageRating;
 
-    // @OnwToMany means The relationship between Recipe + Ingredients - Each Recipe can have many Ingredients.
+    //
     // Can ingredients have many recipes?? (ManyToMany)
 
     //@OneToMany(mappedBy = "...") - Annotation with attribute
