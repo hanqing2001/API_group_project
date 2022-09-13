@@ -21,14 +21,14 @@ public class Ingredient {
 
     private Allergen allergensContained;
 
-// @ManyToMany
-// @JoinTable(
-//         name = "ingredients_recipe",
-//         joinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)},
-//         inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
-// )
-// @JsonIgnoreProperties ({"ingredients"})
-// private List<Recipe> recipes;
+ @ManyToMany
+ @JoinTable(
+         name = "ingredients_recipe",
+         joinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)},
+         inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
+ )
+ @JsonIgnoreProperties ({"ingredients"})
+  private List<Recipe> recipes;
 
     public Ingredient(){}
 
