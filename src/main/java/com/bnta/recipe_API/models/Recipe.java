@@ -23,13 +23,20 @@ public class Recipe {
 
     //Float primitive data type?? To allow decimals of e.g. 3.5 rating
     @Column
-    private int averageRating;
+    private float averageRating;
 
     // @OnwToMany means The relationship between Recipe + Ingredients - Each Recipe can have many Ingredients.
     // Can ingredients have many recipes?? (ManyToMany)
 
     //@OneToMany(mappedBy = "...") - Annotation with attribute
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable (
+            name = "ingredients_recipes",
+            joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "ingredients_id", nullable = false)}
+
+
+    )
 
     //@JsonIgnoreProperties TO AVOID INFINITE dependencies LOOP ISSUE.
 //    @JsonIgnoreProperties({"recipe", "ingredients"})
@@ -49,11 +56,9 @@ public class Recipe {
 
 //    CONSTRUCTOR::::::::::
 
-    public Recipe(Long id, String name, int averageRating, List<Ingredient> ingredients, int time, int calories, int servings, boolean isVegan, boolean isVegetarian, boolean isGlutenFree) {
-        this.id = id;
+    public Recipe(String name, float averageRating,int time, int calories, int servings, boolean isVegan, boolean isVegetarian, boolean isGlutenFree) {
         this.name = name;
         this.averageRating = averageRating;
-        this.ingredients = ingredients;
         this.time = time;
         this.calories = calories;
         this.servings = servings;
@@ -89,11 +94,11 @@ public class Recipe {
     }
 
     //For the AverageRating property:
-    public int getAverageRating() {
+    public float getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(int averageRating) {
+    public void setAverageRating(float averageRating) {
         this.averageRating = averageRating;
     }
 
