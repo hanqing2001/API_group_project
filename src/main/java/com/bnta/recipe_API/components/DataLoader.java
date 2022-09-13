@@ -1,6 +1,8 @@
 package com.bnta.recipe_API.components;
 
+import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
+import com.bnta.recipe_API.repositories.RecipeRepository;
 import com.bnta.recipe_API.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -13,6 +15,8 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RecipeRepository recipeRepository;
 
 
     @Override
@@ -27,6 +31,11 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(user2);
         userRepository.save(user3);
         userRepository.save(user4);
+
+        Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,false,true,false);
+
+        recipeRepository.save(recipe1);
+
 
 
 

@@ -46,7 +46,9 @@ public class UserController {
     public ResponseEntity<User> addRecipeToUserFavs(
             @RequestParam Long userId,
             @RequestParam Long recipeId){
-        User user = userService.addRecipeToUserFavs(recipeId,userId);
+        userService.addRecipeToUserFavs(recipeId,userId);
+        User user = userRepository.findById(userId).get();
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
+
 }

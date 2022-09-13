@@ -37,10 +37,9 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User addRecipeToUserFavs(Long recipeId, Long userId){
+    public void addRecipeToUserFavs(Long recipeId, Long userId){
         User targetUser = userRepository.findById(userId).get();
         Recipe targetRecipe = recipeRepository.findById(recipeId).get();
         targetUser.addRecipeToUserFavs(targetRecipe);
-        return targetUser;
     }
 }
