@@ -23,7 +23,7 @@ public class Ingredient {
 
  @ManyToMany
  @JoinTable(
-         name = "ingredients_recipe",
+         name = "ingredients_recipes",
          joinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)},
          inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
  )
