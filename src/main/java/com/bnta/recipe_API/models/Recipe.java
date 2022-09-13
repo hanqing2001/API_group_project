@@ -3,6 +3,7 @@ package com.bnta.recipe_API.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 //@Entity is a table named = "..." :
@@ -46,6 +47,14 @@ public class Recipe {
     private boolean isVegetarian;
     @Column
     private boolean isGlutenFree;
+    @ManyToMany
+    @JoinTable(
+            name = "users_recipes",
+            joinColumns = {@JoinColumn(name = "recipe_id",nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id",nullable = false)}
+    )
+    @JsonIgnoreProperties({"favRecipes"})
+    private List<User> favUsers;
 
 //    CONSTRUCTOR::::::::::
 
@@ -60,6 +69,7 @@ public class Recipe {
         this.isVegan = isVegan;
         this.isVegetarian = isVegetarian;
         this.isGlutenFree = isGlutenFree;
+        this.favUsers = new ArrayList<>();
     }
 
     // no arg constructor/ empty constructor
@@ -158,6 +168,18 @@ public class Recipe {
 
     public void setGlutenFree(boolean glutenFree) {
         isGlutenFree = glutenFree;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<User> getFavUsers() {
+        return favUsers;
+    }
+
+    public void setFavUsers(List<User> favUsers) {
+        this.favUsers = favUsers;
     }
 
     // FOR READABILITY PURPOSES. WITHOUT @OVERRIDE, THE DATA WILL SHOW AS NUMBERS (COMPUTER LANG) e.g. banana could be written as 6Kbceq2 etc

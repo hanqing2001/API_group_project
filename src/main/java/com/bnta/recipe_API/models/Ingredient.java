@@ -22,7 +22,7 @@ public class Ingredient {
     private Allergen allergensContained;
     @ManyToMany
     @JsonIgnoreProperties({"ingredient"})
-    private List<Recipe> recipies;
+    private List<Recipe> recipes;
 
     public void Ingredient(){}
 

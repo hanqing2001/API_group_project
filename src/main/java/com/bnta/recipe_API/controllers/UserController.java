@@ -1,7 +1,10 @@
 package com.bnta.recipe_API.controllers;
 
+import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
+import com.bnta.recipe_API.repositories.RecipeRepository;
 import com.bnta.recipe_API.repositories.UserRepository;
+import com.bnta.recipe_API.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     @PostMapping
     public ResponseEntity<User> addNewUser(@RequestBody User user){
@@ -34,5 +40,13 @@ public class UserController {
         userRepository.deleteById(id);
         String message = "User " + userName + " has been deleted";
         return new ResponseEntity<>(message,HttpStatus.OK);
+    }
+
+    @PutMapping("/fav")
+    public ResponseEntity<User> addRecipeToUserFavs(
+            @RequestParam Long userId,
+            @RequestParam Long recipeId){
+        User user = userService.addRecipeToUserFavs(recipeId,userId);
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 }

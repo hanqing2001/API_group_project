@@ -1,6 +1,8 @@
 package com.bnta.recipe_API.services;
 
+import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
+import com.bnta.recipe_API.repositories.RecipeRepository;
 import com.bnta.recipe_API.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RecipeRepository recipeRepository;
 
     public List<User> getAllUsers(){
         return userRepository.findAll();
@@ -30,5 +35,12 @@ public class UserService {
 
     public void removeUser(Long id){
         userRepository.deleteById(id);
+    }
+
+    public User addRecipeToUserFavs(Long recipeId, Long userId){
+        User targetUser = userRepository.findById(userId).get();
+        Recipe targetRecipe = recipeRepository.findById(recipeId).get();
+        targetUser.addRecipeToUserFavs(targetRecipe);
+        return targetUser;
     }
 }
