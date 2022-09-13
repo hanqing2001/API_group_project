@@ -36,5 +36,8 @@ public class IngredientController {
         String message = String.format("This %s has been removed,", ingredient);
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
+    //we want them to be able to put in an id or name
+    // the name will be removed from the list
+    //
 
 }
