@@ -28,7 +28,7 @@ public class Ingredient {
          inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
  )
  @JsonIgnoreProperties ({"ingredients"})
- private List<Recipe> recipes;
+  private List<Recipe> recipes;
 
     public Ingredient(){}
 
