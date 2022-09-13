@@ -34,8 +34,8 @@ public class UserController {
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<String> removeUser(Long id){
+    @DeleteMapping(value = {"/{id}"})
+    public ResponseEntity<String> removeUser(@PathVariable Long id){
         String userName = userRepository.findById(id).get().getName();
         userRepository.deleteById(id);
         String message = "User " + userName + " has been deleted";
