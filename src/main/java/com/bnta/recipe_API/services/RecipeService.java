@@ -1,5 +1,6 @@
 package com.bnta.recipe_API.services;
 
+import com.bnta.recipe_API.models.Ingredient;
 import com.bnta.recipe_API.models.Recipe;
 
 import com.bnta.recipe_API.repositories.RecipeRepository;
@@ -29,7 +30,24 @@ public class RecipeService {
         return recipeRepository.findById(id);
     }
 
+    // loop through ingredients and check if they are vegan
+    // if one is not, set isVegan to be false
+    public void setRequirements(Long id){
+        Recipe recipe = recipeRepository.findById(id).get();
+        for (Ingredient ingredient: recipe.getIngredients()){
+            if (!ingredient.isGlutenFree()){
+                recipe.setGlutenFree(false);
+            }
+            if (!ingredient.isVegan()){
+                recipe.setVegan(false);
+                recipe.setVegetarian(false);
+            }
+            if (!ingredient.isVegetarian()){
+                recipe.setVegetarian(false);
+            }
+        }
 
+    }
 
 //
 //
@@ -55,12 +73,13 @@ public class RecipeService {
 //
 //
 //
-////Method to addRecipe:
-//    //    Method to: take recipe object + persist to repository
-//    public Recipe saveRecipe(Recipe recipe) {
-//        recipeRepository.save(new(recipe);
-//        return recipe;
-//    }
+//Method to addRecipe:
+    //    Method to: take recipe object + persist to repository
+    public Recipe saveRecipe(Recipe recipe) {
+        Recipe savedRecipe = recipeRepository.save(recipe); //gives it a row in the table and gives it an id
+        this.setRequirements(savedRecipe.getId());
+        return recipe; // can use if statements with returned value
+    }
 //
 //    //Method to get dietaryRequirement(String):List<Recipe>
 //    public List<Recipe> getDietaryRequirement(){

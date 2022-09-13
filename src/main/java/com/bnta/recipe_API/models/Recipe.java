@@ -64,17 +64,36 @@ public class Recipe {
 
 //    CONSTRUCTOR::::::::::
 
-    public Recipe(String name, float averageRating,int time, int calories, int servings, boolean isVegan, boolean isVegetarian, boolean isGlutenFree) {
+    public Recipe(String name, float averageRating,int time, int calories, int servings,
+                  List<Ingredient> ingredients) {
         this.name = name;
         this.averageRating = averageRating;
         this.time = time;
         this.calories = calories;
         this.servings = servings;
-        this.isVegan = isVegan;
-        this.isVegetarian = isVegetarian;
-        this.isGlutenFree = isGlutenFree;
         this.favUsers = new ArrayList<>();
+        this.isVegan = true;
+        this.isVegetarian = true;
+        this.isGlutenFree = true;
+        this.ingredients = ingredients;
+        setRequirements(); //calls method once ingredients are set
+        // this needs to be called every time an ingredient is added
     }
+     public void setRequirements(){
+        for (Ingredient ingredient: ingredients){
+            if (!ingredient.isGlutenFree()){
+                this.isGlutenFree = false;
+            }
+           if (!ingredient.isVegan()){
+               this.isVegan = false;
+               this.isVegetarian = false;
+           }
+           if (!ingredient.isVegetarian()){
+               this.isVegetarian = false;
+           }
+        }
+
+     }
 
     // no arg constructor/ empty constructor
     public Recipe(){
