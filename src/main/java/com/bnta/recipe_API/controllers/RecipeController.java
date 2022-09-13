@@ -22,9 +22,7 @@ public class RecipeController {
     @Autowired
     RecipeService recipeService;
 
-
     @Autowired
-
     RecipeRepository recipeRepository;
 
 //GET METHODS (Show)
@@ -66,12 +64,10 @@ public class RecipeController {
                                                @RequestParam  int time,
                                                @RequestParam  int calories,
                                                @RequestParam  int servings,
-                                               @RequestParam boolean isVegan,
-                                               @RequestParam boolean isVegetarian,
-                                               @RequestParam boolean isGlutenFree) {
+                                               @RequestParam  List<Ingredient> ingredients) {
 
-        Recipe newRecipe = new Recipe(name, averageRating,time,calories,servings,isVegan,isVegetarian,isGlutenFree);
-        recipeRepository.save(newRecipe);
+        Recipe newRecipe = new Recipe(name,averageRating,time,calories,servings, ingredients);
+        recipeService.saveRecipe(newRecipe);
         System.out.println("Recipe" + name + " has been added!");
 
 //        Recipe savedRecipe = recipeService.saveRecipe(recipe);

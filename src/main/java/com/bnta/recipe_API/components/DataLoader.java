@@ -1,5 +1,7 @@
 package com.bnta.recipe_API.components;
 
+import com.bnta.recipe_API.models.Allergen;
+import com.bnta.recipe_API.models.Ingredient;
 import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
 import com.bnta.recipe_API.repositories.RecipeRepository;
@@ -8,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -32,7 +37,11 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(user3);
         userRepository.save(user4);
 
-        Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,false,true,false);
+        Ingredient ingredient1 = new Ingredient("Tomato",true,true,true, Allergen.NONE);
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(ingredient1);
+
+        Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ingredients);
 
         recipeRepository.save(recipe1);
 
