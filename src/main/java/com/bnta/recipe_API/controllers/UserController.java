@@ -4,6 +4,7 @@ import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
 import com.bnta.recipe_API.repositories.RecipeRepository;
 import com.bnta.recipe_API.repositories.UserRepository;
+import com.bnta.recipe_API.services.RecipeService;
 import com.bnta.recipe_API.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,12 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    RecipeRepository recipeRepository;
+
+    @Autowired
+    RecipeService recipeService;
 
     @PostMapping
     public ResponseEntity<User> addNewUser(@RequestBody User user){
@@ -52,9 +59,14 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
-//    @PostMapping("/rating")
-//    public ResponseEntity<Recipe> addRating(
-//            @RequestParam
-//    )
+    @PostMapping("/rating")
+    public ResponseEntity<Recipe> addRating(
+            @RequestParam Long recipeId,
+            @RequestParam float rating
+    ){
+        Recipe targetRecipe = recipeRepository.findById(recipeId).get();
+        userService.addRating(recipeId,rating);
+        return new ResponseEntity<>(targetRecipe,HttpStatus.OK);
+    }
 
 }
