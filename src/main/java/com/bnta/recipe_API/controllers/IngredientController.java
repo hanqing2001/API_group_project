@@ -25,10 +25,10 @@ public class IngredientController {
     }
 
     @PostMapping
-    public ResponseEntity<Ingredient> submitNewIngredient(@RequestBody Ingredient ingredient) {
-        Ingredient savedIngredient = ingredientService.saveIngredient(ingredient);
+    public ResponseEntity<String> submitNewIngredient(@RequestBody Ingredient ingredient) {
+        String savedIngredient = ingredientService.saveIngredient(ingredient);
 
-        return new ResponseEntity<>(ingredient, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedIngredient, HttpStatus.CREATED);
     }
 
     @DeleteMapping (value = "/deleteIngredient/{id}")

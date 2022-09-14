@@ -14,28 +14,28 @@ public class IngredientService {
 
     @Autowired
     IngredientRepository ingredientRepository;
-    private ArrayList<String> submittedIngredients = new ArrayList<>();
+    private ArrayList<Ingredient> submittedIngredients = new ArrayList<>();
 
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
     }
 
-    public Ingredient saveIngredient(Ingredient ingredient) {
-        if(this.submittedIngredients.contains(ingredient.getName())){
-            String cantAddIngredient = "You have already added this ingredient!";
-        } else {
-            ingredientRepository.save(ingredient);
-            submittedIngredients.add(ingredient.getName());
-        }
-
-        // when the user passes in an ingredients
-        // Check the ingredient is in the  saved ingredient list
-
-        //if not -  save the user to the saved users list
-        // if yes - reply "you have already added this ingredient!
-
-        return ingredient;
-    }
+//    public Ingredient saveIngredient(Ingredient ingredient) {
+//        if(this.submittedIngredients.contains(ingredient.getName())){
+//            String cantAddIngredient = "You have already added this ingredient!";
+//        } else {
+//            ingredientRepository.save(ingredient);
+//            submittedIngredients.add(ingredient.getName());
+//        }
+//
+//        // when the user passes in an ingredients
+//        // Check the ingredient is in the  saved ingredient list
+//
+//        //if not -  save the user to the saved users list
+//        // if yes - reply "you have already added this ingredient!
+//
+//        return ingredient;
+//    }
 
     public void removeAnIngredient(Long id) {
         ingredientRepository.deleteById(id);
@@ -44,4 +44,22 @@ public class IngredientService {
     public Optional<Ingredient> getIngredientById(Long id){
         return ingredientRepository.findById(id);
     }
+
+
+    public String saveIngredient(Ingredient ingredient) {
+        for (Ingredient i: submittedIngredients) {
+            if (i.getName().equals(ingredient.getName())) {
+                return "You have already added this ingredient!";
+            } else if (submittedIngredients.isEmpty()) {
+                return "Empty";
+
+            } else
+                ingredientRepository.save(ingredient);
+                submittedIngredients.add(ingredient);
+                return "All done";
+        }
+
+        return null;
+    }
+
 }
