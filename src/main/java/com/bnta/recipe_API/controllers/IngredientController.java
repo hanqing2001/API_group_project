@@ -27,15 +27,16 @@ public class IngredientController {
     @PostMapping
     public ResponseEntity<Ingredient> submitNewIngredient(@RequestBody Ingredient ingredient) {
         Ingredient savedIngredient = ingredientService.saveIngredient(ingredient);
+
         return new ResponseEntity<>(ingredient, HttpStatus.CREATED);
     }
 
     @DeleteMapping (value = "/deleteIngredient/{id}")
     public ResponseEntity<String> removeAnIngredient(@PathVariable Long id) {
         ingredientService.removeAnIngredient(id);
-        // String ingredient = ingredientService.getIngredientById(id).get().getName();
-       // String message = String.format("This %s has been removed,", ingredient.getName());
-        String message = "This ingredient has been removed";
+        String ingredientName = ingredientService.getIngredientById(id).get().getName();
+        String message = String.format("This %s has been removed,", ingredientName);
+        //String message = "This ingredient has been removed";
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
