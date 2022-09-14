@@ -14,10 +14,7 @@ public class Recipe {
 
     //@Id ...
     @Id
-    //@GeneratedValue... automatically generating an id for each property that increments every time as more are added
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column adds a column the name(field) in the table:
-    @Column
     private Long id;
     @Column
     private String name;
@@ -249,6 +246,8 @@ By specifying the above options you tell hibernate to save them to the database 
                 ", isGlutenFree=" + isGlutenFree +
                 '}';
     }
+
+
 
 
 }

@@ -86,6 +86,14 @@ public class RecipeController {
 
     }
 
+    @GetMapping("/ingredient")
+    public ResponseEntity<List<Recipe>> getAllRecipesByIngredient(@RequestParam Optional<Long> ingredientId){
+        List<Recipe> recipes;
+        recipes = recipeService.getRecipeByIngredientId(ingredientId.get());
+
+        return new ResponseEntity<>(recipes,HttpStatus.OK);
+    }
+
 
 
 
