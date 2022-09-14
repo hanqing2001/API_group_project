@@ -59,12 +59,12 @@ public class RecipeController {
 
     // Create a new recipe method  - localhost:8080/recipe/create
     @PostMapping("/create")
-    public ResponseEntity<Recipe> addNewRecipe(@RequestParam String name,
-                                               @RequestParam float averageRating,
-                                               @RequestParam  int time,
-                                               @RequestParam  int calories,
-                                               @RequestParam  int servings,
-                                               @RequestParam  List<Ingredient> ingredients) {
+    public ResponseEntity<Recipe> addNewRecipe(@RequestBody String name,
+                                               @RequestBody float averageRating,
+                                               @RequestBody  int time,
+                                               @RequestBody  int calories,
+                                               @RequestBody  int servings,
+                                               @RequestBody  List<Ingredient> ingredients) {
 
         Recipe newRecipe = new Recipe(name,averageRating,time,calories,servings, ingredients);
         recipeService.saveRecipe(newRecipe);
