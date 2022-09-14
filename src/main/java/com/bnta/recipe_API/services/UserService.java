@@ -48,5 +48,6 @@ public class UserService {
         Float newAverageRating = ((rating + (targetRecipe.getNoRatedUsers() * targetRecipe.getAverageRating() )) / (1 + targetRecipe.getNoRatedUsers() ) );
         targetRecipe.setAverageRating(newAverageRating);
         targetRecipe.setNoRatedUsers(targetRecipe.getNoRatedUsers() + 1);
+        recipeRepository.save(targetRecipe);
     }
 }

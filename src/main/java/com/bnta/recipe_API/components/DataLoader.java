@@ -51,65 +51,51 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(user8);
         userRepository.save(user9);
 
+        List<Ingredient> ratatouilleIngredientsList = new ArrayList<>(); //RatatouilleIngredientsList
+        List<Ingredient> garlicGingerNoodlesIngredientsList = new ArrayList<>(); //GarlicGingerNoodlesIngredientsList
+        List<Ingredient> smokySalmonIngredientsList = new ArrayList<>(); // SmokySalmonIngredientsList
+        List<Ingredient> garlicScrambledEggsIngredientsList = new ArrayList<>(); //GarlicScrambledEggsIngredientsList
+
         Ingredient ingredient1 = new Ingredient("Tomato",true,true,true, Allergen.NONE);
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredientRepository.save(ingredient1);
-
         Ingredient ingredient2 = new Ingredient("Ginger",true,true,true, Allergen.NONE);
-        ingredients.add(ingredient2);
-        ingredientRepository.save(ingredient2);
-
         Ingredient ingredient3 = new Ingredient("Salmon",true,false,false, Allergen.FISH);
-        ingredients.add(ingredient3);
-        ingredientRepository.save(ingredient1);
-
         Ingredient ingredient4 = new Ingredient("White pasta",false,true,true, Allergen.NONE);
-        ingredients.add(ingredient4);
-        ingredientRepository.save(ingredient1);
-
         Ingredient ingredient5 = new Ingredient("eggs",true,false,true, Allergen.EGGS);
-        ingredients.add(ingredient5);
-        ingredientRepository.save(ingredient1);
-
         Ingredient ingredient6 = new Ingredient("Soy sauce",false,true,true, Allergen.NONE);
-        ingredients.add(ingredient6);
-        ingredientRepository.save(ingredient6);
-
-
         Ingredient ingredient7 = new Ingredient("garlic",true,true,true, Allergen.NONE);
-        ingredients.add(ingredient7);
+
+        ingredientRepository.save(ingredient1);
+        ingredientRepository.save(ingredient2);
+        ingredientRepository.save(ingredient3);
+        ingredientRepository.save(ingredient4);
+        ingredientRepository.save(ingredient5);
+        ingredientRepository.save(ingredient6);
         ingredientRepository.save(ingredient7);
 
+        ratatouilleIngredientsList.add(ingredient1);
+        ratatouilleIngredientsList.add(ingredient7);
 
+        garlicGingerNoodlesIngredientsList.add(ingredient7);
+        garlicGingerNoodlesIngredientsList.add(ingredient4);
+        garlicGingerNoodlesIngredientsList.add(ingredient2);
 
+        smokySalmonIngredientsList.add(ingredient4);
 
-        Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ingredients);
-        recipe1.addIngredientToRecipe(ingredient1);
-        recipe1.addIngredientToRecipe(ingredient7);
+        garlicScrambledEggsIngredientsList.add(ingredient5);
+        garlicScrambledEggsIngredientsList.add(ingredient6);
+        garlicScrambledEggsIngredientsList.add(ingredient7);
+
+        Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ratatouilleIngredientsList);
         recipeRepository.save(recipe1);
 
-        Recipe recipe2 = new Recipe("Garlic Ginger Noodles",5,15,186,2,ingredients);
-        recipe2.addIngredientToRecipe(ingredient7);
-        recipe2.addIngredientToRecipe(ingredient4);
-        recipe2.addIngredientToRecipe(ingredient2);
-        recipe2.setRequirements();
+        Recipe recipe2 = new Recipe("Garlic Ginger Noodles",5,15,186,2,garlicGingerNoodlesIngredientsList);
         recipeRepository.save(recipe2);
 
-        Recipe recipe3 = new Recipe("Smoky Salmon",4,11,363,2,ingredients);
-        recipe3.setRequirements();
-        recipe3.addIngredientToRecipe(ingredient4);
+        Recipe recipe3 = new Recipe("Smoky Salmon",4,11,363,2,smokySalmonIngredientsList);
         recipeRepository.save(recipe3);
 
-        Recipe recipe4 = new Recipe("Garlic Scrambled Eggs",5,75,212,4,ingredients);
-        recipe4.addIngredientToRecipe(ingredient5);
-        recipe4.addIngredientToRecipe(ingredient6);
-        recipe4.addIngredientToRecipe(ingredient7);
-        recipe1.setRequirements();
+        Recipe recipe4 = new Recipe("Garlic Scrambled Eggs",5,75,212,4,garlicScrambledEggsIngredientsList);
         recipeRepository.save(recipe4);
-
-
-
-
 
 
     }
