@@ -5,6 +5,7 @@ import com.bnta.recipe_API.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,9 @@ public class IngredientService {
     }
 
     public Ingredient saveIngredient(Ingredient ingredient) {
-        ingredientRepository.save(ingredient);
+        if(ingredientRepository.con
+                ingredientRepository.save(ingredient);
+        ArrayList<String>
         return ingredient;
     }
 
