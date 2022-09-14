@@ -48,4 +48,21 @@ public class UserService {
         Float newAverageRating = (rating + (targetRecipe.getNoRatedUsers() * targetRecipe.getAverageRating() ) / (1 + targetRecipe.getNoRatedUsers() ) );
         targetRecipe.setAverageRating(newAverageRating);
     }
+
+    //delete users' recipe from favorite recipe list
+
+    public void deleteRecipeFromUserFavs (Long favRecipeId) {userRepository.deleteById(favRecipeId);}
+
+
+    }
+
+
+
+
+
+//    public void deleteFromUserFavRecipeList(Long recipeId, Long userId) {
+//        User targetUser = userRepository.findById(userId).get();
+//        Recipe targetRecipe = recipeRepository.findById(recipeId).get();
+//        targetUser.deleteFromUserFavRecipeList(targetRecipe);
+//    }
 }
