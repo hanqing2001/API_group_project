@@ -14,15 +14,27 @@ public class IngredientService {
 
     @Autowired
     IngredientRepository ingredientRepository;
+    private ArrayList<String> submittedIngredients = new ArrayList<>();
 
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
     }
 
     public Ingredient saveIngredient(Ingredient ingredient) {
-        if(ingredientRepository.con
+        if(submittedIngredients.contains(ingredient){
                 ingredientRepository.save(ingredient);
-        ArrayList<String>
+        } else
+
+        submittedIngredients = new ArrayList<>()saveIngredient(ingredient);
+        submittedIngredients.add(savedIngredient.getName());
+
+        // when the user passes in an ingredients
+        // Check the ingredient is in the  saved ingredient list
+
+        //if not -  save the user to the saved users list
+        // if yes - reply "you have already added this ingredient!
+
+
         return ingredient;
     }
 
