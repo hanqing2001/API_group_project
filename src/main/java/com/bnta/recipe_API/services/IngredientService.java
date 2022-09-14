@@ -21,19 +21,18 @@ public class IngredientService {
     }
 
     public Ingredient saveIngredient(Ingredient ingredient) {
-        if(submittedIngredients.contains(ingredient){
-                ingredientRepository.save(ingredient);
-        } else
-
-        submittedIngredients = new ArrayList<>()saveIngredient(ingredient);
-        submittedIngredients.add(savedIngredient.getName());
+        if(this.submittedIngredients.contains(ingredient.getName())){
+            String cantAddIngredient = "You have already added this ingredient!";
+        } else {
+            ingredientRepository.save(ingredient);
+            submittedIngredients.add(ingredient.getName());
+        }
 
         // when the user passes in an ingredients
         // Check the ingredient is in the  saved ingredient list
 
         //if not -  save the user to the saved users list
         // if yes - reply "you have already added this ingredient!
-
 
         return ingredient;
     }
