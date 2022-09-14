@@ -33,9 +33,10 @@ public class IngredientController {
 
     @DeleteMapping (value = "/deleteIngredient/{id}")
     public ResponseEntity<String> removeAnIngredient(@PathVariable Long id) {
-        ingredientService.removeAnIngredient(id);
+
         String ingredientName = ingredientService.getIngredientById(id).get().getName();
         String message = String.format("This %s has been removed,", ingredientName);
+        ingredientService.removeAnIngredient(id);
         //String message = "This ingredient has been removed";
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
