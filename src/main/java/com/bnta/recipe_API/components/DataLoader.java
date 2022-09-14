@@ -43,10 +43,10 @@ public class DataLoader implements ApplicationRunner {
 
         Ingredient ingredient1 = new Ingredient("Tomato",true,true,true, Allergen.NONE);
         List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(ingredient1);
         ingredientRepository.save(ingredient1);
 
         Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ingredients);
-        recipe1.addIngredientToRecipe(ingredient1);
         recipe1.setRequirements();
         recipeRepository.save(recipe1);
 
