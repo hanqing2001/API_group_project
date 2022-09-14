@@ -3,6 +3,7 @@ package com.bnta.recipe_API.services;
 import com.bnta.recipe_API.models.Ingredient;
 import com.bnta.recipe_API.models.Recipe;
 
+import com.bnta.recipe_API.repositories.IngredientRepository;
 import com.bnta.recipe_API.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class RecipeService {
     @Autowired
     RecipeRepository recipeRepository;
 
+    @Autowired
+    IngredientRepository ingredientRepository;
+
     // get all recipes
 
     public List<Recipe> getAllRecipes() {
@@ -28,6 +32,12 @@ public class RecipeService {
     //    Optional: means it either has something in it or it doesn't
     public Optional<Recipe> getRecipeById(Long id){
         return recipeRepository.findById(id);
+    }
+
+    public List<Recipe> getRecipeByIngredientId(long id){
+        Ingredient ingredient = ingredientRepository.findById(id).get();
+
+        return recipeRepository.findByIngredients(ingredient);
     }
 
     // loop through ingredients and check if they are vegan

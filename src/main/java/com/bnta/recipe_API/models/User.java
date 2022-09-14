@@ -62,4 +62,7 @@ public class User {
     public void addRecipeToUserFavs(Recipe recipe){
         this.favRecipes.add(recipe);
     }
+
+
 }
+

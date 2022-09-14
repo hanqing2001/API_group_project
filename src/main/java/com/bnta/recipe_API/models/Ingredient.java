@@ -19,6 +19,7 @@ public class Ingredient {
     @Column (name = "is_vegetarian")
     private boolean isVegetarian;
 
+    @Column(name = "allergens")
     private Allergen allergensContained;
 
     @ManyToMany
@@ -86,5 +87,13 @@ public class Ingredient {
 
     public void setAllergensContained(Allergen allergensContained) {
         this.allergensContained = allergensContained;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

@@ -14,10 +14,7 @@ public class Recipe {
 
     //@Id ...
     @Id
-    //@GeneratedValue... automatically generating an id for each property that increments every time as more are added
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column adds a column the name(field) in the table:
-    @Column
     private Long id;
     @Column
     private String name;
@@ -44,14 +41,7 @@ By specifying the above options you tell hibernate to save them to the database 
     //@ManyToMany(mappedBy = "...") - Annotation with attribute
 
     //@ManyToMany (cascade = CascadeType.ALL)
-    @ManyToMany
-    @JoinTable(
-            name = "ingredients_recipes",
-            joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)}
-    )
-    @JsonIgnoreProperties({"recipes"})
-    private List<Ingredient> ingredients;
+
     @Column
     private int time;
     @Column
@@ -74,6 +64,15 @@ By specifying the above options you tell hibernate to save them to the database 
     private List<User> favUsers;
 
     private float noRatedUsers;
+
+    @ManyToMany
+    @JoinTable(
+            name = "ingredients_recipes",
+            joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)}
+    )
+    @JsonIgnoreProperties({"recipes"})
+    private List<Ingredient> ingredients;
 
 //    CONSTRUCTOR::::::::::
 
@@ -240,15 +239,17 @@ By specifying the above options you tell hibernate to save them to the database 
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", averageRating=" + averageRating +
-                ", ingredients=" + ingredients +
                 ", time=" + time +
                 ", calories=" + calories +
                 ", servings=" + servings +
                 ", isVegan=" + isVegan +
                 ", isVegetarian=" + isVegetarian +
                 ", isGlutenFree=" + isGlutenFree +
+                ", ingredients=" + ingredients +
                 '}';
     }
+
+
 
 
 }
