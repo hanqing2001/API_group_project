@@ -5,11 +5,13 @@ import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
 import com.bnta.recipe_API.repositories.RecipeRepository;
 import com.bnta.recipe_API.services.RecipeService;
+import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,12 +61,12 @@ public class RecipeController {
 
     // Create a new recipe method  - localhost:8080/recipe/create
     @PostMapping("/create")
-    public ResponseEntity<Recipe> addNewRecipe(@RequestParam String name,
-                                               @RequestParam float averageRating,
-                                               @RequestParam  int time,
-                                               @RequestParam  int calories,
-                                               @RequestParam  int servings,
-                                               @RequestParam  List<Ingredient> ingredients) {
+    public ResponseEntity<Recipe> addNewRecipe(@RequestBody String name,
+                                               @RequestBody float averageRating,
+                                               @RequestBody  int time,
+                                               @RequestBody  int calories,
+                                               @RequestBody  int servings,
+                                               @RequestBody  List<Ingredient> ingredients) {
 
         Recipe newRecipe = new Recipe(name,averageRating,time,calories,servings, ingredients);
         recipeService.saveRecipe(newRecipe);
@@ -85,6 +87,21 @@ public class RecipeController {
 
 
     }
+
+    @GetMapping("/ingredient")
+    public ResponseEntity<List<Recipe>> getAllRecipesByIngredient(@RequestParam Optional<Long> ingredientId){
+        List<Recipe> recipes;
+        recipes = recipeService.getRecipeByIngredientId(ingredientId.get());
+
+        return new ResponseEntity<>(recipes,HttpStatus.OK);
+    }
+
+    @GetMapping("ingredient/name")
+    public ResponseEntity<List<Recipe>> getAllRecipesByName(@RequestParam Optional<String> ingredient){
+        List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient.get());
+        return new ResponseEntity<>(recipes,HttpStatus.OK);
+    }
+
 
 
 

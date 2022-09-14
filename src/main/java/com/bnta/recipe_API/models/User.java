@@ -63,8 +63,6 @@ public class User {
         this.favRecipes.add(recipe);
     }
 
-    //delete users' recipe from favorite recipe list
-    public void deleteFromUserFavRecipeList(Recipe targetRecipe) {
-        this.removeFavRecipe.remove(favRecipes);
-    }
+
 }
+

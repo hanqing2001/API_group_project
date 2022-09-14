@@ -4,6 +4,7 @@ import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
 import com.bnta.recipe_API.repositories.RecipeRepository;
 import com.bnta.recipe_API.repositories.UserRepository;
+import com.bnta.recipe_API.services.RecipeService;
 import com.bnta.recipe_API.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,12 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    RecipeRepository recipeRepository;
+
+    @Autowired
+    RecipeService recipeService;
 
     @PostMapping
     public ResponseEntity<User> addNewUser(@RequestBody User user){
@@ -52,35 +59,14 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
-    //Update list of fav recipes by deletion: TESTING"""
-
-//    @DeleteMapping(value = "/{favRecipeId}")
-//    public void deleteRecipeFromUserFavs (@PathVariable("favRecipeId") Long favRecipeId) {
-//        UserService.deleteRecipeFromUserFavs.(favRecipeId);
-
-
-
-    @DeleteMapping(value = "/fav/recipe{id}")
-    public ResponseEntity<String> removeUserFavListRecipe(@PathVariable Long id){
-        String recipeName = UserRepository.findByFavRecipeId(id).get().getFavRecipes();
-        userRepository.deleteById(id);
-        String message = "Recipe " + recipeName + "has been removed from users' favorites";
-        return new ResponseEntity<>(message,HttpStatus.OK);
+    @PostMapping("/rating")
+    public ResponseEntity<Recipe> addRating(
+            @RequestParam Long recipeId,
+            @RequestParam float rating
+    ){
+        Recipe targetRecipe = recipeRepository.findById(recipeId).get();
+        userService.addRating(recipeId,rating);
+        return new ResponseEntity<>(targetRecipe,HttpStatus.OK);
     }
-
-
-
-
-//    @DeleteMapping("/deleteFav/{recipeId}")
-//    public void deleteFromUserFavRecipeList(@PathVariable Long recipeId) throws Exception {
-//        userService.deleteFromUserFavRecipeList(Id);
-//    }
-
-//    @PostMapping("/rating")
-//    public ResponseEntity<Recipe> addRating(
-//            @RequestParam
-//    )
-
-
 
 }

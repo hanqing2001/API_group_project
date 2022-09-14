@@ -3,6 +3,7 @@ package com.bnta.recipe_API.services;
 import com.bnta.recipe_API.models.Ingredient;
 import com.bnta.recipe_API.models.Recipe;
 
+import com.bnta.recipe_API.repositories.IngredientRepository;
 import com.bnta.recipe_API.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class RecipeService {
     @Autowired
     RecipeRepository recipeRepository;
 
+    @Autowired
+    IngredientRepository ingredientRepository;
+
     // get all recipes
 
     public List<Recipe> getAllRecipes() {
@@ -30,9 +34,20 @@ public class RecipeService {
         return recipeRepository.findById(id);
     }
 
+    public List<Recipe> getRecipeByIngredientId(long id){
+        Ingredient ingredient = ingredientRepository.findById(id).get();
+
+        return recipeRepository.findByIngredients(ingredient);
+    }
+
+    public List<Recipe> getRecipeByIngredientName(String ingredient){
+        List<Recipe> recipes = recipeRepository.findByIngredientsName(ingredient);
+        return recipes;
+    }
+
     // loop through ingredients and check if they are vegan
     // if one is not, set isVegan to be false
-    public void setRequirements(Long id){
+    public void updateRequirements(Long id){
         Recipe recipe = recipeRepository.findById(id).get();
         for (Ingredient ingredient: recipe.getIngredients()){
             if (!ingredient.isGlutenFree()){
@@ -77,7 +92,7 @@ public class RecipeService {
     //    Method to: take recipe object + persist to repository
     public Recipe saveRecipe(Recipe recipe) {
         Recipe savedRecipe = recipeRepository.save(recipe); //gives it a row in the table and gives it an id
-        this.setRequirements(savedRecipe.getId());
+        this.updateRequirements(savedRecipe.getId());
         return recipe; // can use if statements with returned value
     }
 //

@@ -45,8 +45,10 @@ public class UserService {
 
     public void addRating(Long id, Float rating){
         Recipe targetRecipe = recipeRepository.findById(id).get();
-        Float newAverageRating = (rating + (targetRecipe.getNoRatedUsers() * targetRecipe.getAverageRating() ) / (1 + targetRecipe.getNoRatedUsers() ) );
+        Float newAverageRating = ((rating + (targetRecipe.getNoRatedUsers() * targetRecipe.getAverageRating() )) / (1 + targetRecipe.getNoRatedUsers() ) );
         targetRecipe.setAverageRating(newAverageRating);
+        targetRecipe.setNoRatedUsers(targetRecipe.getNoRatedUsers() + 1);
+        recipeRepository.save(targetRecipe);
     }
 
     //delete users' recipe from favorite recipe list

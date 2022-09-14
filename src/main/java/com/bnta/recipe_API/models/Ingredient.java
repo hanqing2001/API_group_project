@@ -19,16 +19,17 @@ public class Ingredient {
     @Column (name = "is_vegetarian")
     private boolean isVegetarian;
 
+    @Column(name = "allergens")
     private Allergen allergensContained;
 
- @ManyToMany
- @JoinTable(
-         name = "ingredients_recipes",
-         joinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)},
-         inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
- )
- @JsonIgnoreProperties ({"ingredients"})
-  private List<Recipe> recipes;
+    @ManyToMany
+    @JoinTable(
+             name = "ingredients_recipes",
+             joinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)},
+             inverseJoinColumns =  {@JoinColumn(name = "recipe_id", nullable = false)}
+    )
+    @JsonIgnoreProperties ({"ingredients"})
+    private List<Recipe> recipes;
 
     public Ingredient(){}
 
@@ -86,5 +87,13 @@ public class Ingredient {
 
     public void setAllergensContained(Allergen allergensContained) {
         this.allergensContained = allergensContained;
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }
