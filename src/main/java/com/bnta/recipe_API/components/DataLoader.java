@@ -56,12 +56,12 @@ public class DataLoader implements ApplicationRunner {
         List<Ingredient> smokySalmonIngredientsList = new ArrayList<>(); // SmokySalmonIngredientsList
         List<Ingredient> garlicScrambledEggsIngredientsList = new ArrayList<>(); //GarlicScrambledEggsIngredientsList
 
-        Ingredient ingredient1 = new Ingredient("Tomato",true,true,true, Allergen.NONE);
-        Ingredient ingredient2 = new Ingredient("Ginger",true,true,true, Allergen.NONE);
-        Ingredient ingredient3 = new Ingredient("Salmon",true,false,false, Allergen.FISH);
-        Ingredient ingredient4 = new Ingredient("White pasta",false,true,true, Allergen.NONE);
+        Ingredient ingredient1 = new Ingredient("tomato",true,true,true, Allergen.NONE);
+        Ingredient ingredient2 = new Ingredient("ginger",true,true,true, Allergen.NONE);
+        Ingredient ingredient3 = new Ingredient("salmon",true,false,false, Allergen.FISH);
+        Ingredient ingredient4 = new Ingredient("white pasta",false,true,true, Allergen.NONE);
         Ingredient ingredient5 = new Ingredient("eggs",true,false,true, Allergen.EGGS);
-        Ingredient ingredient6 = new Ingredient("Soy sauce",false,true,true, Allergen.NONE);
+        Ingredient ingredient6 = new Ingredient("soy sauce",false,true,true, Allergen.NONE);
         Ingredient ingredient7 = new Ingredient("garlic",true,true,true, Allergen.NONE);
 
         ingredientRepository.save(ingredient1);

@@ -40,6 +40,11 @@ public class RecipeService {
         return recipeRepository.findByIngredients(ingredient);
     }
 
+    public List<Recipe> getRecipeByIngredientName(String ingredient){
+        List<Recipe> recipes = recipeRepository.findByIngredientsName(ingredient);
+        return recipes;
+    }
+
     // loop through ingredients and check if they are vegan
     // if one is not, set isVegan to be false
     public void updateRequirements(Long id){
