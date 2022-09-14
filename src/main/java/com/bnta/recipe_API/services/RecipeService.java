@@ -32,7 +32,7 @@ public class RecipeService {
 
     // loop through ingredients and check if they are vegan
     // if one is not, set isVegan to be false
-    public void setRequirements(Long id){
+    public void updateRequirements(Long id){
         Recipe recipe = recipeRepository.findById(id).get();
         for (Ingredient ingredient: recipe.getIngredients()){
             if (!ingredient.isGlutenFree()){
@@ -77,7 +77,7 @@ public class RecipeService {
     //    Method to: take recipe object + persist to repository
     public Recipe saveRecipe(Recipe recipe) {
         Recipe savedRecipe = recipeRepository.save(recipe); //gives it a row in the table and gives it an id
-        this.setRequirements(savedRecipe.getId());
+        this.updateRequirements(savedRecipe.getId());
         return recipe; // can use if statements with returned value
     }
 //

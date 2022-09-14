@@ -26,20 +26,31 @@ public class Recipe {
     @Column
     private float averageRating;
 
-    //
+    //@JsonIgnoreProperties TO AVOID INFINITE dependencies LOOP ISSUE.
+
+    //added ,"recipes" to JsonIgnoreProperties because error prompted to collapse repeating annotation:
+
+
+    /*added cascade = CascadeType.All because :
+    You should include cascade="all" (if using xml) or cascade=CascadeType.ALL
+    (if using annotations) on your collection mapping.
+This happens because you have a collection in your entity,
+and that collection has one or more items which are not present in the database.
+By specifying the above options you tell hibernate to save them to the database when saving their parent.
+     */
+
     // Can ingredients have many recipes?? (ManyToMany)
 
-    //@OneToMany(mappedBy = "...") - Annotation with attribute
+    //@ManyToMany(mappedBy = "...") - Annotation with attribute
 
-    //@JsonIgnoreProperties TO AVOID INFINITE dependencies LOOP ISSUE.
-//    @JsonIgnoreProperties({"recipe", "ingredients"})
+    //@ManyToMany (cascade = CascadeType.ALL)
     @ManyToMany
     @JoinTable(
-            name = "ingredients_recipe",
+            name = "ingredients_recipes",
             joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
-            inverseJoinColumns =  {@JoinColumn(name = "ingredients_id", nullable = false)}
+            inverseJoinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)}
     )
-    @JsonIgnoreProperties ({"recipes"})
+    @JsonIgnoreProperties({"recipes"})
     private List<Ingredient> ingredients;
     @Column
     private int time;
@@ -79,24 +90,25 @@ public class Recipe {
         this.isVegetarian = true;
         this.isGlutenFree = true;
         this.ingredients = ingredients;
+
         setRequirements(); //calls method once ingredients are set
         // this needs to be called every time an ingredient is added
     }
-//     public void setRequirements(){
-//        for (Ingredient ingredient: ingredients){
-//            if (!ingredient.isGlutenFree()){
-//                this.isGlutenFree = false;
-//            }
-//           if (!ingredient.isVegan()){
-//               this.isVegan = false;
-//               this.isVegetarian = false;
-//           }
-//           if (!ingredient.isVegetarian()){
-//               this.isVegetarian = false;
-//           }
-//        }
-//
-//     }
+     public void setRequirements(){
+        for (Ingredient ingredient: ingredients){
+            if (!ingredient.isGlutenFree()){
+                this.isGlutenFree = false;
+            }
+           if (!ingredient.isVegan()){
+               this.isVegan = false;
+               this.isVegetarian = false;
+           }
+           if (!ingredient.isVegetarian()){
+               this.isVegetarian = false;
+           }
+        }
+
+     }
 
     // no arg constructor/ empty constructor
     public Recipe(){
@@ -214,6 +226,10 @@ public class Recipe {
 
     public void setNoRatedUsers(float noRatedUsers) {
         this.noRatedUsers = noRatedUsers;
+    }
+
+    public void addIngredientToRecipe(Ingredient ingredient){
+        this.ingredients.add(ingredient);
     }
 
     // FOR READABILITY PURPOSES. WITHOUT @OVERRIDE, THE DATA WILL SHOW AS NUMBERS (COMPUTER LANG) e.g. banana could be written as 6Kbceq2 etc
