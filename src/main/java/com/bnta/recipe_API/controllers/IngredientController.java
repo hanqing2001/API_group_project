@@ -34,7 +34,7 @@ public class IngredientController {
     public ResponseEntity<String> removeAnIngredient(@PathVariable Long id) {
         ingredientService.removeAnIngredient(id);
         // String ingredient = ingredientService.getIngredientById(id).get().getName();
-       // String message = String.format("This %s has been removed,", ingredient);
+       // String message = String.format("This %s has been removed,", ingredient.getName());
         String message = "This ingredient has been removed";
         return new ResponseEntity<>(message, HttpStatus.OK);
     }

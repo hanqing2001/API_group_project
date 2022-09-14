@@ -4,6 +4,7 @@ import com.bnta.recipe_API.models.Allergen;
 import com.bnta.recipe_API.models.Ingredient;
 import com.bnta.recipe_API.models.Recipe;
 import com.bnta.recipe_API.models.User;
+import com.bnta.recipe_API.repositories.IngredientRepository;
 import com.bnta.recipe_API.repositories.RecipeRepository;
 import com.bnta.recipe_API.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     RecipeRepository recipeRepository;
 
+    @Autowired
+    IngredientRepository ingredientRepository;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -39,10 +43,10 @@ public class DataLoader implements ApplicationRunner {
 
         Ingredient ingredient1 = new Ingredient("Tomato",true,true,true, Allergen.NONE);
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(ingredient1);
+        ingredientRepository.save(ingredient1);
 
         Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ingredients);
-
+        recipe1.addIngredientToRecipe(ingredient1);
         recipeRepository.save(recipe1);
 
 

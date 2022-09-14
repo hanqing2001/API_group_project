@@ -35,9 +35,9 @@ public class Recipe {
 //    @JsonIgnoreProperties({"recipe", "ingredients"})
     @ManyToMany
     @JoinTable(
-            name = "ingredients_recipe",
+            name = "ingredients_recipes",
             joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
-            inverseJoinColumns =  {@JoinColumn(name = "ingredients_id", nullable = false)}
+            inverseJoinColumns =  {@JoinColumn(name = "ingredient_id", nullable = false)}
     )
     @JsonIgnoreProperties ({"recipes"})
     private List<Ingredient> ingredients;
@@ -79,6 +79,7 @@ public class Recipe {
         this.isVegetarian = true;
         this.isGlutenFree = true;
         this.ingredients = ingredients;
+
         setRequirements(); //calls method once ingredients are set
         // this needs to be called every time an ingredient is added
     }
@@ -214,6 +215,10 @@ public class Recipe {
 
     public void setNoRatedUsers(float noRatedUsers) {
         this.noRatedUsers = noRatedUsers;
+    }
+
+    public void addIngredientToRecipe(Ingredient ingredient){
+        this.ingredients.add(ingredient);
     }
 
     // FOR READABILITY PURPOSES. WITHOUT @OVERRIDE, THE DATA WILL SHOW AS NUMBERS (COMPUTER LANG) e.g. banana could be written as 6Kbceq2 etc
