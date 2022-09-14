@@ -29,7 +29,7 @@ public class Recipe {
     //@JsonIgnoreProperties TO AVOID INFINITE dependencies LOOP ISSUE.
 
     //added ,"recipes" to JsonIgnoreProperties because error prompted to collapse repeating annotation:
-    @JsonIgnoreProperties({"recipe", "ingredients", "recipes"})
+
 
     /*added cascade = CascadeType.All because :
     You should include cascade="all" (if using xml) or cascade=CascadeType.ALL
@@ -43,12 +43,14 @@ By specifying the above options you tell hibernate to save them to the database 
 
     //@ManyToMany(mappedBy = "...") - Annotation with attribute
 
-    @ManyToMany (cascade = CascadeType.ALL)
+    //@ManyToMany (cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "ingredients_recipes",
             joinColumns = {@JoinColumn(name = "recipe_id", nullable = false)},
-            inverseJoinColumns =  {@JoinColumn(name = "ingredient_id", nullable = false)}
+            inverseJoinColumns = {@JoinColumn(name = "ingredient_id", nullable = false)}
     )
+    @JsonIgnoreProperties({"recipes"})
     private List<Ingredient> ingredients;
     @Column
     private int time;
