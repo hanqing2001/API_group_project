@@ -7,28 +7,32 @@
 - [Project Overview](#project-overview)
 - [Setup & Instructions](#setup-&-instructions)
 - [Minimum Viable Product(MVP)](#Minimum-Viable-Product(MVP)
-- [Further Implementations & Extensions](#Further-Implementations-&-Extensions]
+- [Further Implementations & Extensions](#Further-Implementations-&-Extensions)
 
 <br>
 
 ## Who We Are
 We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network Technology Academy!: 
 
-**-Sakusan**
+**Sakusan**
   - GitHub: (https://github.com/sakusanpuwan)
 
-**-Danielle**
+**Danielle**
   - GitHub:(https://github.com/DaniK178)
 
-**-Carla**
+**Carla**
   - GitHub:(https://github.com/Carla022)
   
-**-Hanqing**
+**Hanqing**
   - GitHub:(https://github.com/hanqing2001)
 
 ## Project Overview
 
 ## Setup & Instructions
+
+## Minimum Viable Product(MVP)
+
+## Further Implementations & Extensions
 
 ## Commands
 
