@@ -12,7 +12,19 @@
 <br>
 
 ## Who We Are
-We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network Technology Academy!: [Sakusan](https://github.com/sakusanpuwan), [Danielle](https://github.com/DaniK178), [Carla](https://github.com/Carla022), [Hanqing](https://github.com/hanqing2001)
+We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network Technology Academy!: 
+
+**-Sakusan**
+  - GitHub: (https://github.com/sakusanpuwan)
+
+**-Danielle**
+  - GitHub:(https://github.com/DaniK178)
+
+**-Carla**
+  - GitHub:(https://github.com/Carla022)
+  
+**-Hanqing**
+  - GitHub:(https://github.com/hanqing2001)
 
 ## Project Overview
 
