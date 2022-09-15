@@ -97,9 +97,30 @@ public class RecipeController {
     }
 
     @GetMapping("ingredient/name")
-    public ResponseEntity<List<Recipe>> getAllRecipesByName(@RequestParam Optional<String> ingredient){
-        List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient.get());
-        return new ResponseEntity<>(recipes,HttpStatus.OK);
+    public ResponseEntity<List<Recipe>> getAllRecipesByName(
+            @RequestParam Optional<String> ingredient1,
+            @RequestParam Optional<String> ingredient2,
+            @RequestParam Optional<String> ingredient3
+    ){
+        if (ingredient1.isPresent() && ingredient2.isPresent() && ingredient3.isPresent()){
+            List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient1.get());
+            List<Recipe> second_recipes = recipeService.getRecipeByIngredientName(ingredient2.get());
+            List<Recipe> third_recipes = recipeService.getRecipeByIngredientName(ingredient3.get());
+            second_recipes.retainAll(third_recipes);
+            recipes.retainAll(second_recipes);
+            return new ResponseEntity<>(recipes,HttpStatus.OK);
+
+        } else if (ingredient1.isPresent() && ingredient2.isPresent()){
+            List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient1.get());
+            List<Recipe> second_recipes = recipeService.getRecipeByIngredientName(ingredient2.get());
+            recipes.retainAll(second_recipes); // replaces list recipes with only values present in both lists
+            return new ResponseEntity<>(recipes,HttpStatus.OK);
+        } else if (ingredient1.isPresent()){
+            List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient1.get());
+            return new ResponseEntity<>(recipes,HttpStatus.OK);
+        }
+
+        return null;
     }
 
 
