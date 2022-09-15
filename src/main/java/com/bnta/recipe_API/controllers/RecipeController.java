@@ -80,7 +80,7 @@ public class RecipeController {
 
     // DELETE MAPPING - delete recipe
 
-    @DeleteMapping("/deleteRecipe{id}")
+    @DeleteMapping("/deleteRecipe/{id}")
     public void deleteRecipe(@PathVariable Long id) {
 
         recipeRepository.deleteById(id);
