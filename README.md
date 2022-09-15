@@ -19,8 +19,8 @@ We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network T
 ## Setup & Instructions
 
 ## Further Implementations & Extensions
-To expand our app - here are some things we can implement:
-- Add food groups to the ingredients
+To expand our API - here are some things we could implement:
+- Add food groups to the ingredients, and therefore be able to categorise and choose ingredients based on this
 - Be able to remove a recipe from the User's favourite list
 - Display the ratings given by each user
 - Add a new ingredient, and search recipes that contain this ingredient.
