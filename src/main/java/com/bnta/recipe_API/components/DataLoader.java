@@ -55,7 +55,10 @@ public class DataLoader implements ApplicationRunner {
         List<Ingredient> garlicGingerNoodlesIngredientsList = new ArrayList<>(); //GarlicGingerNoodlesIngredientsList
         List<Ingredient> smokySalmonIngredientsList = new ArrayList<>(); // SmokySalmonIngredientsList
         List<Ingredient> garlicScrambledEggsIngredientsList = new ArrayList<>(); //GarlicScrambledEggsIngredientsList
+        List<Ingredient> smokedSalmonToastIngredientsList= new ArrayList<>();
         List<Ingredient> soyMarinatedEggsList = new ArrayList<>();
+        List<Ingredient> spicyGingerPastaIngredientsList = new ArrayList<>();
+        List<Ingredient> gingerSobaNoodlesIngredientsList= new ArrayList<>();
 
         Ingredient ingredient1 = new Ingredient("tomato",true,true,true, Allergen.NONE);
         Ingredient ingredient2 = new Ingredient("ginger",true,true,true, Allergen.NONE);
@@ -64,6 +67,7 @@ public class DataLoader implements ApplicationRunner {
         Ingredient ingredient5 = new Ingredient("eggs",true,false,true, Allergen.EGGS);
         Ingredient ingredient6 = new Ingredient("soy sauce",false,true,true, Allergen.NONE);
         Ingredient ingredient7 = new Ingredient("garlic",true,true,true, Allergen.NONE);
+        Ingredient ingredient8 = new Ingredient("white bread",false,true,true, Allergen.WHEAT);
 
         ingredientRepository.save(ingredient1);
         ingredientRepository.save(ingredient2);
@@ -72,7 +76,7 @@ public class DataLoader implements ApplicationRunner {
         ingredientRepository.save(ingredient5);
         ingredientRepository.save(ingredient6);
         ingredientRepository.save(ingredient7);
-
+        ingredientRepository.save(ingredient8);
 
 
         ratatouilleIngredientsList.add(ingredient1);
@@ -82,7 +86,8 @@ public class DataLoader implements ApplicationRunner {
         garlicGingerNoodlesIngredientsList.add(ingredient4);
         garlicGingerNoodlesIngredientsList.add(ingredient2);
 
-        smokySalmonIngredientsList.add(ingredient4);
+        smokedSalmonToastIngredientsList.add(ingredient3);
+        smokedSalmonToastIngredientsList.add(ingredient8);
 
         garlicScrambledEggsIngredientsList.add(ingredient5);
         garlicScrambledEggsIngredientsList.add(ingredient6);
@@ -91,6 +96,16 @@ public class DataLoader implements ApplicationRunner {
         soyMarinatedEggsList.add(ingredient5);
         soyMarinatedEggsList.add(ingredient6);
         soyMarinatedEggsList.add(ingredient7);
+
+        smokySalmonIngredientsList.add(ingredient3);
+        smokySalmonIngredientsList.add(ingredient8);
+
+        spicyGingerPastaIngredientsList.add(ingredient1);
+        spicyGingerPastaIngredientsList.add(ingredient2);
+        spicyGingerPastaIngredientsList.add(ingredient4);
+
+        gingerSobaNoodlesIngredientsList.add(ingredient2);
+        gingerSobaNoodlesIngredientsList.add(ingredient6);
 
         Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ratatouilleIngredientsList);
         recipeRepository.save(recipe1);
@@ -106,6 +121,15 @@ public class DataLoader implements ApplicationRunner {
 
         Recipe recipe5 = new Recipe("Soy Marinated Eggs",3,18,250,6,soyMarinatedEggsList);
         recipeRepository.save(recipe5);
+
+        Recipe recipe6 = new Recipe("Smoked Salmon Toast",4,10,189,7,smokedSalmonToastIngredientsList);
+        recipeRepository.save(recipe6);
+
+        Recipe recipe7 = new Recipe("Spicy Ginger Pasta",5,75,212,4,spicyGingerPastaIngredientsList);
+        recipeRepository.save(recipe7);
+
+        Recipe recipe8 = new Recipe("Ginger Soba Noodles",4,10,299,4,gingerSobaNoodlesIngredientsList);
+        recipeRepository.save(recipe8);
 
 
 
