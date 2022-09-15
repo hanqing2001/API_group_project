@@ -21,6 +21,13 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Recipe> findByIngredientsName(String ingredient);
 
+    List<Recipe> findByIsVegan(Boolean isVegan);
+
+    List<Recipe> findByIsGlutenFree(Boolean isGlutenFree);
+
+    List<Recipe> findByIsVegetarian(Boolean isVegetarian);
+
+
 //    @Query(
 //            "SELECT recipes FROM recipes WHERE recipes.ingredients.name IN :recipes.ingredients = ingredient1"
 //
