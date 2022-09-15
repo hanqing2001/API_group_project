@@ -34,21 +34,25 @@ We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network T
 
 ## Commands
 
-| Request Type  | Request Path                                                                       | Description                             |   |   |
-|---------------|------------------------------------------------------------------------------------|-----------------------------------------|---|---|
-| POST          | http://localhost:8080/users                                                        | Creates a new user                      |   |   |
-| GET           | http://localhost:8080/users                                                        | Retrieves all users                     |   |   |
-| DELETE        | http://localhost:8080/users/{id}                                                   | Delete an user                          |   |   |
-| GET           | http://localhost:8080/recipe                                                       | Retrieves all recipes                   |   |   |
-| PUT           | http://localhost:8080/users/fav?userId={id}&recipeId={id}                          | Adds a recipe to the User's favourites  |   |   |
-| POST          | http://localhost:8080/ingredients                                                  | Creates a new ingredient                |   |   |
-| GET           | http://localhost:8080/ingredients                                                  | Retrieves all ingredients               |   |   |
-| DELETE        | http://localhost:8080/ingredients/deleteIngredient/{id}                            | Delete an ingredient                    |   |   |
-| POST          | http://localhost:8080/users/rating?rating={id}&recipeId={id}                       | Adds a rating to a recipe               |   |   |
-| GET           | http://localhost:8080/recipe/ingredient?ingredientId={id}                          | Retrieve a recipe by the ingredient ID  |   |   |
-| GET           | http://localhost:8080/recipe/ingredient/name?ingredient1={name}&ingredient2={name} | Retrieve a recipe by ingredient Name    |   |   |
+The classes have a numebr of CRUD functionality: 
+
+| Request Type  | Request Path                                                                         | Description                                  |
+|---------------|--------------------------------------------------------------------------------------|----------------------------------------------|
+| POST          | `http://localhost:8080/users`                                                        | Creates a new user                           |
+| GET           | `http://localhost:8080/users`                                                        | Retrieves all users                          |
+| DELETE        | `http://localhost:8080/users/10`                                                     | Delete an user                               |
+| GET           | `http://localhost:8080/recipe`                                                       | Retrieves all recipes                        |
+| PUT           | `http://localhost:8080/users/fav?userId={id}&recipeId={id}`                          | Adds a recipe to the User's favourites       |
+| POST          | `http://localhost:8080/ingredients`                                                  | Creates a new ingredient                     |
+| GET           | `http://localhost:8080/ingredients`                                                  | Retrieves all ingredients                    |
+| DELETE        | `http://localhost:8080/ingredients/deleteIngredient/{id}`                            | Delete an ingredient                         |
+| POST          | `http://localhost:8080/users/rating?rating={id}&recipeId={id}`                       | Adds a rating to a recipe                    |
+| GET           | `http://localhost:8080/recipe/ingredient?ingredientId={id}`                          | Retrieve a recipe by the ingredient ID       |
+| GET           | `http://localhost:8080/recipe/ingredient/name?ingredient1={name}&ingredient2={name}` | Retrieve a recipe by ingredient Name         |
+| GET           | `http://localhost:8080/recipe/requirement?{dietary requirement}=true`                | Retrieve recipies by the dietary requirement |
 
 ## Further Implementations & Extensions
+
 To expand our API - here are some things we could implement:
 - Add food groups to the ingredients, and therefore be able to categorise and choose ingredients based on this
 - Be able to remove a recipe from the User's favourite list
