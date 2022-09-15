@@ -3,12 +3,10 @@ package com.bnta.recipe_API.controllers;
 import com.bnta.recipe_API.models.Ingredient;
 import com.bnta.recipe_API.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,10 +23,10 @@ public class IngredientController {
     }
 
     @PostMapping
-    public ResponseEntity<Ingredient> submitNewIngredient(@RequestBody Ingredient ingredient) {
-        Ingredient savedIngredient = ingredientService.saveIngredient(ingredient);
+    public ResponseEntity<String> submitNewIngredient(@RequestBody Ingredient ingredient) {
+        String savedIngredient = ingredientService.saveIngredient(ingredient);
 
-        return new ResponseEntity<>(ingredient, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedIngredient, HttpStatus.CREATED);
     }
 
     @DeleteMapping (value = "/deleteIngredient/{id}")

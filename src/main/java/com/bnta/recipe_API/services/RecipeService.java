@@ -60,7 +60,10 @@ public class RecipeService {
             if (!ingredient.isVegetarian()){
                 recipe.setVegetarian(false);
             }
+            // we might not have,
         }
+
+
 
     }
 

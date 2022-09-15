@@ -97,6 +97,9 @@ public class DataLoader implements ApplicationRunner {
         Recipe recipe4 = new Recipe("Garlic Scrambled Eggs",5,75,212,4,garlicScrambledEggsIngredientsList);
         recipeRepository.save(recipe4);
 
+        if(recipeRepository.findByIngredientsNameAndIngredientsName("ginger", "garlic").size() > 0){
+            System.out.println("found some");
+        }
 
     }
 }

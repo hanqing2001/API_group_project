@@ -18,4 +18,3 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findByIngredients(Ingredient ingredients);
 
     List<Recipe> findByIngredientsName(String ingredient);
-}
