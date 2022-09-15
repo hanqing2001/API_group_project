@@ -1,6 +1,10 @@
 # RecAPI Backend Project
+
 ***If you have something to steam, roast or peel, we will guide you to your meal!***
-<img src="https://static.vecteezy.com/system/resources/previews/006/412/982/non_2x/english-breakfast-fried-eggs-with-bacon-in-a-cast-iron-skillet-vector.jpg" width="750" height="265"/>
+
+<p align="center">
+<img src="https://static.vecteezy.com/system/resources/previews/006/412/982/non_2x/english-breakfast-fried-eggs-with-bacon-in-a-cast-iron-skillet-vector.jpg" align="center" width="650" height="250"/>
+</p>
 
 ## Table of Contents
 - [Who We Are](#who-we-are)
@@ -14,19 +18,38 @@
 ## Who We Are
 We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network Technology Academy!: 
 
-**Sakusan**
+<details>
+<summary>Sakusan</summary>
   - GitHub: (https://github.com/sakusanpuwan)
+</details>
 
-**Danielle**
+<details>
+<summary>Danielle</summary>
   - GitHub:(https://github.com/DaniK178)
+</details>
 
-**Carla**
+<details>
+<summary>Carla</summary>
   - GitHub:(https://github.com/Carla022)
-  
-**Hanqing**
+</details>
+ 
+<details>
+<summary>Hanqing</summary>
   - GitHub:(https://github.com/hanqing2001)
+ </details>
 
 ## Project Overview
+
+A collaborative project assigned by Bright Network Technology Academy. This project pesented the team with the opportunity to showcase backend skills and understanding of **Java, Spring Boot** and **Postman** for testing.
+
+To develop a well-thought-through API, the team got together to conduct research and devised plans to deliver within a week:
+
+We all love a tasty home meal, but sometimes matching the right recipe with the ingredients in the pantry can prove difficult. With RecAPI, simply **create a profile** *(you can add dietary requirements)*, tell us **what is in stock** and we'll **offer thousands of dishes** you can enjoy. 
+
+**What makes RecAPI different**
+
+Happy with a recipe? leave a rating to let others know how much you loved it! or add it to favorites so you will always have it at hand.
+
 
 ## Setup & Instructions
 
