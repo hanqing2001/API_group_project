@@ -18,19 +18,38 @@
 ## Who We Are
 We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network Technology Academy!: 
 
-**Sakusan**
+<details>
+<summary>Sakusan</summary>
   - GitHub: (https://github.com/sakusanpuwan)
+</details>
 
-**Danielle**
+<details>
+<summary>Danielle</summary>
   - GitHub:(https://github.com/DaniK178)
+</details>
 
-**Carla**
+<details>
+<summary>Carla</summary>
   - GitHub:(https://github.com/Carla022)
-  
-**Hanqing**
+</details>
+ 
+<details>
+<summary>Hanqing</summary>
   - GitHub:(https://github.com/hanqing2001)
+ </details>
 
 ## Project Overview
+
+A collaborative project assigned by Bright Network Technology Academy. This project pesented the team with the opportunity to showcase backend skills and understanding of **Java, Spring Boot** and **Postman** for testing.
+
+To develop a well-thought-through API, the team got together to conduct research and devised plans to deliver within a week:
+
+We all love a tasty home meal, but sometimes matching the right recipe with the ingredients in the pantry can prove difficult. With RecAPI, simply **create a profile** *(you can add dietary requirements)*, tell us **what is in stock** and we'll **offer thousands of dishes** you can enjoy. 
+
+**What makes RecAPI different**
+
+Happy with a recipe? leave a rating to let others know how much you loved it! or add it to favorites so you will always have it at hand.
+
 
 ## Setup & Instructions
 
