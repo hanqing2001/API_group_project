@@ -55,6 +55,7 @@ public class DataLoader implements ApplicationRunner {
         List<Ingredient> garlicGingerNoodlesIngredientsList = new ArrayList<>(); //GarlicGingerNoodlesIngredientsList
         List<Ingredient> smokySalmonIngredientsList = new ArrayList<>(); // SmokySalmonIngredientsList
         List<Ingredient> garlicScrambledEggsIngredientsList = new ArrayList<>(); //GarlicScrambledEggsIngredientsList
+        List<Ingredient> soyMarinatedEggsList = new ArrayList<>();
 
         Ingredient ingredient1 = new Ingredient("tomato",true,true,true, Allergen.NONE);
         Ingredient ingredient2 = new Ingredient("ginger",true,true,true, Allergen.NONE);
@@ -87,6 +88,10 @@ public class DataLoader implements ApplicationRunner {
         garlicScrambledEggsIngredientsList.add(ingredient6);
         garlicScrambledEggsIngredientsList.add(ingredient7);
 
+        soyMarinatedEggsList.add(ingredient5);
+        soyMarinatedEggsList.add(ingredient6);
+        soyMarinatedEggsList.add(ingredient7);
+
         Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ratatouilleIngredientsList);
         recipeRepository.save(recipe1);
 
@@ -99,11 +104,9 @@ public class DataLoader implements ApplicationRunner {
         Recipe recipe4 = new Recipe("Garlic Scrambled Eggs",5,75,212,4,garlicScrambledEggsIngredientsList);
         recipeRepository.save(recipe4);
 
-//        if(recipeRepository.findByIngredientsNameAndIngredientsName("ginger","garlic").size() > 0){
-//            System.out.println("found some");
-//        }else {
-//            System.out.println("found nothing");
-//        }
+        Recipe recipe5 = new Recipe("Soy Marinated Eggs",3,18,250,6,soyMarinatedEggsList);
+        recipeRepository.save(recipe5);
+
 
 
     }
