@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,6 +122,24 @@ public class RecipeController {
         }
 
         return null;
+    }
+
+    @GetMapping("/requirement")
+    public ResponseEntity<List<Recipe>> getRecipeByRequirement(
+            @RequestParam Optional<Boolean> isVegan,
+            @RequestParam Optional<Boolean> isVegetarian,
+            @RequestParam Optional<Boolean> isGlutenFree
+    ){
+        List<Recipe> recipes = new ArrayList<>();
+        if (isVegan.isPresent()){
+            recipes = recipeRepository.findByIsVegan(isVegan.get());
+            return new ResponseEntity<>(recipes,HttpStatus.OK);
+        } else if (isVegetarian.isPresent()) {
+            recipes = recipeRepository.findByIsVegetarian(isVegetarian.get());
+            return new ResponseEntity<>(recipes,HttpStatus.OK);
+        } else
+            recipes = recipeRepository.findByIsGlutenFree(isGlutenFree.get());
+            return new ResponseEntity<>(recipes,HttpStatus.OK);
     }
 
 
