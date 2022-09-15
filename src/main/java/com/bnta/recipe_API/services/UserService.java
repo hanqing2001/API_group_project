@@ -58,6 +58,8 @@ public class UserService {
 
     }
 
+//
+
 
 
 
@@ -67,4 +69,12 @@ public class UserService {
 //        Recipe targetRecipe = recipeRepository.findById(recipeId).get();
 //        targetUser.deleteFromUserFavRecipeList(targetRecipe);
 //    }
-}
+
+/* FOR API RECIPE DEVELOPMENT - User Favs recipe deletion function::::::::
+
+//User types in recipe Name in favs list
+//program seaches for recipe in favs list
+if recipe name given by user matches a recipe name in favs list, user can remove
+else if recipe name given by user does not match a current recipe in favs list, return: RecipeName + " recipe is not in favorites list"
+
+*/
