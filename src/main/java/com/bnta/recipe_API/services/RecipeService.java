@@ -75,6 +75,10 @@ public class RecipeService {
         return recipeRepository.findByIsGlutenFree(isGlutenFree);
      }
 
+     public void deleteById(long id){
+        recipeRepository.deleteById(id);
+     }
+
 
 //
 //
