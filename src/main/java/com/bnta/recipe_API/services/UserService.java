@@ -41,6 +41,7 @@ public class UserService {
         User targetUser = userRepository.findById(userId).get();
         Recipe targetRecipe = recipeRepository.findById(recipeId).get();
         targetUser.addRecipeToUserFavs(targetRecipe);
+        userRepository.save(targetUser);
     }
 
     public void addRating(Long id, Float rating){
