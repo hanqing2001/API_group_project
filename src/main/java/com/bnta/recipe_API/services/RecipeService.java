@@ -62,10 +62,19 @@ public class RecipeService {
             }
             // we might not have,
         }
-
-
-
     }
+
+    public List<Recipe> findByIsVegan(boolean isVegan){
+        return recipeRepository.findByIsVegan(isVegan);
+    }
+     public List<Recipe> findByIsVegetarian(boolean isVegetarian){
+        return recipeRepository.findByIsVegetarian(isVegetarian);
+     }
+
+     public List<Recipe> findByIsGlutenFree(boolean isGlutenFree){
+        return recipeRepository.findByIsGlutenFree(isGlutenFree);
+     }
+
 
 //
 //

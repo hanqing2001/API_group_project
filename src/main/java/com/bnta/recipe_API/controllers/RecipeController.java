@@ -129,18 +129,25 @@ public class RecipeController {
             @RequestParam Optional<Boolean> isVegan,
             @RequestParam Optional<Boolean> isVegetarian,
             @RequestParam Optional<Boolean> isGlutenFree
-    ){
+    ) {
         List<Recipe> recipes = new ArrayList<>();
-        if (isVegan.isPresent()){
-            recipes = recipeRepository.findByIsVegan(isVegan.get());
-            return new ResponseEntity<>(recipes,HttpStatus.OK);
+        if (isVegan.isPresent()) {
+            recipes = recipeService.findByIsVegan(isVegan.get());
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
         } else if (isVegetarian.isPresent()) {
-            recipes = recipeRepository.findByIsVegetarian(isVegetarian.get());
-            return new ResponseEntity<>(recipes,HttpStatus.OK);
-        } else
-            recipes = recipeRepository.findByIsGlutenFree(isGlutenFree.get());
-            return new ResponseEntity<>(recipes,HttpStatus.OK);
-    }
+            recipes = recipeService.findByIsVegetarian(isVegetarian.get());
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
+        } else if (isGlutenFree.isPresent()) {
+            recipes = recipeService.findByIsGlutenFree(isGlutenFree.get());
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
+        }
+        else{
+            recipes = recipeService.getAllRecipes();
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
+
+        }
+        }
+
 
 
 
