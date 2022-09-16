@@ -26,7 +26,6 @@ public class User {
     private List<Recipe> favRecipes;
 
     public User(String name){
-        this.userId = userId;
         this.name = name;
         this.favRecipes = new ArrayList<>();
     }
