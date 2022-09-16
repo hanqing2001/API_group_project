@@ -18,55 +18,47 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     UserService userService;
-
-    @Autowired
-    RecipeRepository recipeRepository;
 
     @Autowired
     RecipeService recipeService;
 
     @PostMapping
     public ResponseEntity<User> addNewUser(@RequestBody User user){
-        User newUser = userRepository.save(user);
+        User newUser = userService.addUser(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers(){
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
 
     @DeleteMapping(value = {"/{id}"})
     public ResponseEntity<String> removeUser(@PathVariable Long id){
-        String userName = userRepository.findById(id).get().getName();
-        userRepository.deleteById(id);
-        String message = "User " + userName + " has been deleted";
+        userService.removeUser(id);
+        String message = "User " + id + " has been deleted";
         return new ResponseEntity<>(message,HttpStatus.OK);
     }
 
     @PutMapping("/fav")
-    public ResponseEntity<User> addRecipeToUserFavs(
+    public ResponseEntity<String> addRecipeToUserFavs(
             @RequestParam Long userId,
             @RequestParam Long recipeId){
         userService.addRecipeToUserFavs(recipeId,userId);
-        User user = userRepository.findById(userId).get();
-        userRepository.save(user);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        String message = "Recipe " + recipeId + " has been added to favourites";
+        return new ResponseEntity<>(message,HttpStatus.OK);
     }
 
     @PostMapping("/rating")
-    public ResponseEntity<Recipe> addRating(
+    public ResponseEntity<String> addRating(
             @RequestParam Long recipeId,
             @RequestParam float rating
     ){
-        Recipe targetRecipe = recipeRepository.findById(recipeId).get();
         userService.addRating(recipeId,rating);
-        return new ResponseEntity<>(targetRecipe,HttpStatus.OK);
+        String message = "A rating of "+ rating+" has been added to recipe "+recipeId;
+        return new ResponseEntity<>(message,HttpStatus.OK);
     }
 
 
