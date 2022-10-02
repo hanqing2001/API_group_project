@@ -3,7 +3,7 @@
 ***If you have something to steam, roast or peel, we will guide you to your meal!***
 
 <p align="center">
-<img src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/british_shakshuka_26737_16x9.jpg" align="center" width="650" height="450"/>
+<img src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/british_shakshuka_26737_16x9.jpg" align="center" width="650" height="400"/>
 </p>
 
 ## Table of Contents
