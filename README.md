@@ -53,7 +53,18 @@ Happy with a recipe? leave a rating to let others know how much you loved it! or
 
 ## Setup & Instructions
 
+1. Clone repo link -> https://github.com/hanqing2001/API_group_project 
+2. Make a database titled "recipe_selector" as in the app properties file -> API_group_project/src/main/resources/application.properties
+3. After runnning the main branch check using Postico that the populated data in data loader can be seen
+4. Use Postman to interact with our API -> Find possible commands and the corresponding endpoints below 
+
 ## Minimum Viable Product(MVP)
+We have defined the MVP as below: 
+* Allow user to create new user profile and search for relevant recipes based on ingredients
+* Allow user to add recipes to favourites list to view later
+* Allow user to request recipes based on dietary requirements 
+* Allow user to rate recipes out of 5
+
 
 ## Commands
 
@@ -82,5 +93,3 @@ To expand our API - here are some things we could implement:
 - Display the ratings given by each user
 - Add a new ingredient, and search recipes that contain this ingredient.
 
-
-## Minimum Viable Product(MVP)
