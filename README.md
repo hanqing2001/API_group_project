@@ -19,28 +19,28 @@
 We are **Spring Boot Busters** - 4 members of Cohort 6 from the Bright Network Technology Academy!: 
 
 <details>
-<summary>Sakusan</summary>
+<summary>Sakusan Puwanendran</summary>
   - GitHub: (https://github.com/sakusanpuwan)
 </details>
 
 <details>
-<summary>Danielle</summary>
+<summary>Danielle Kyere</summary>
   - GitHub:(https://github.com/DaniK178)
 </details>
 
 <details>
-<summary>Carla</summary>
+<summary>Carla S Moreno Lima</summary>
   - GitHub:(https://github.com/Carla022)
 </details>
  
 <details>
-<summary>Hanqing</summary>
+<summary>Hanqing Huang</summary>
   - GitHub:(https://github.com/hanqing2001)
  </details>
 
 ## Project Overview
 
-A collaborative project assigned by Bright Network Technology Academy. This project pesented the team with the opportunity to showcase backend skills and understanding of **Java, Spring Boot** and **Postman** for testing.
+A collaborative project assigned by Bright Network Technology Academy. This project presented the team with the opportunity to showcase backend skills and understanding of **Java, Spring Boot** and **Postman** for testing.
 
 To develop a well-thought-through API, the team got together to conduct research and devised plans to deliver within a week:
 
