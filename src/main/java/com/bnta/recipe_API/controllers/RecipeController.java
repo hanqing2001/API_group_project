@@ -61,22 +61,20 @@ public class RecipeController {
     //POST METHODS
 
     // Create a new recipe method  - localhost:8080/recipe/create
+    @PostMapping
+    public ResponseEntity<Recipe> addNewRecipe(@RequestBody Recipe recipe,
+                                               @RequestParam long[] ingredientsId
+    ) {
+        Recipe newRecipe = recipeService.saveRecipe(recipe, ingredientsId);
+        return new ResponseEntity<>(newRecipe, HttpStatus.CREATED);
+    }
+
     @PostMapping("/create")
-    public ResponseEntity<Recipe> addNewRecipe(@RequestBody String name,
-                                               @RequestBody float averageRating,
-                                               @RequestBody  int time,
-                                               @RequestBody  int calories,
-                                               @RequestBody  int servings,
-                                               @RequestBody  List<Ingredient> ingredients) {
-
-        Recipe newRecipe = new Recipe(name,averageRating,time,calories,servings, ingredients);
-        recipeService.saveRecipe(newRecipe);
-        System.out.println("Recipe" + name + " has been added!");
-
-//        Recipe savedRecipe = recipeService.saveRecipe(recipe);
-
-        return ResponseEntity.ok().body(newRecipe);
-
+    public ResponseEntity<Recipe> addNewRecipeByIngredients(@RequestBody Recipe recipe,
+                                                            @RequestParam String[] ingredientsNames
+    ) {
+        Recipe newRecipe = recipeService.saveRecipeByIngredients(recipe, ingredientsNames);
+        return new ResponseEntity<>(newRecipe, HttpStatus.CREATED);
     }
 
     // DELETE MAPPING - delete recipe
@@ -87,11 +85,11 @@ public class RecipeController {
     }
 
     @GetMapping("/ingredient")
-    public ResponseEntity<List<Recipe>> getAllRecipesByIngredient(@RequestParam Optional<Long> ingredientId){
+    public ResponseEntity<List<Recipe>> getAllRecipesByIngredient(@RequestParam Optional<Long> ingredientId) {
         List<Recipe> recipes;
         recipes = recipeService.getRecipeByIngredientId(ingredientId.get());
 
-        return new ResponseEntity<>(recipes,HttpStatus.OK);
+        return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
 
     @GetMapping("ingredient/name")
@@ -99,23 +97,23 @@ public class RecipeController {
             @RequestParam Optional<String> ingredient1,
             @RequestParam Optional<String> ingredient2,
             @RequestParam Optional<String> ingredient3
-    ){
-        if (ingredient1.isPresent() && ingredient2.isPresent() && ingredient3.isPresent()){
+    ) {
+        if (ingredient1.isPresent() && ingredient2.isPresent() && ingredient3.isPresent()) {
             List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient1.get());
             List<Recipe> second_recipes = recipeService.getRecipeByIngredientName(ingredient2.get());
             List<Recipe> third_recipes = recipeService.getRecipeByIngredientName(ingredient3.get());
             second_recipes.retainAll(third_recipes);
             recipes.retainAll(second_recipes);
-            return new ResponseEntity<>(recipes,HttpStatus.OK);
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
 
-        } else if (ingredient1.isPresent() && ingredient2.isPresent()){
+        } else if (ingredient1.isPresent() && ingredient2.isPresent()) {
             List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient1.get());
             List<Recipe> second_recipes = recipeService.getRecipeByIngredientName(ingredient2.get());
             recipes.retainAll(second_recipes); // replaces list recipes with only values present in both lists
-            return new ResponseEntity<>(recipes,HttpStatus.OK);
-        } else if (ingredient1.isPresent()){
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
+        } else if (ingredient1.isPresent()) {
             List<Recipe> recipes = recipeService.getRecipeByIngredientName(ingredient1.get());
-            return new ResponseEntity<>(recipes,HttpStatus.OK);
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
         }
 
         return null;
@@ -137,13 +135,13 @@ public class RecipeController {
         } else if (isGlutenFree.isPresent()) {
             recipes = recipeService.findByIsGlutenFree(isGlutenFree.get());
             return new ResponseEntity<>(recipes, HttpStatus.OK);
-        }
-        else{
+        } else {
             recipes = recipeService.getAllRecipes();
             return new ResponseEntity<>(recipes, HttpStatus.OK);
 
         }
-        }
+    }
+}
 
 
 
@@ -170,12 +168,3 @@ public class RecipeController {
 ////        }else {
 ////            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 ////        }
-////
-////    }
-//
-
-
-
-
-
-}

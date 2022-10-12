@@ -107,31 +107,36 @@ public class DataLoader implements ApplicationRunner {
         gingerSobaNoodlesIngredientsList.add(ingredient2);
         gingerSobaNoodlesIngredientsList.add(ingredient6);
 
-        Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4,ratatouilleIngredientsList);
+        Recipe recipe1 = new Recipe("Ratatouille",5,75,212,4);
+        recipe1.setIngredients(ratatouilleIngredientsList);
         recipeRepository.save(recipe1);
 
-        Recipe recipe2 = new Recipe("Garlic Ginger Noodles",5,15,186,2,garlicGingerNoodlesIngredientsList);
+        Recipe recipe2 = new Recipe("Garlic Ginger Noodles",5,15,186,2);
+        recipe2.setIngredients(garlicGingerNoodlesIngredientsList);
         recipeRepository.save(recipe2);
 
-        Recipe recipe3 = new Recipe("Smoky Salmon",4,11,363,2,smokySalmonIngredientsList);
+        Recipe recipe3 = new Recipe("Smoky Salmon",4,11,363,2);
+        recipe3.setIngredients(smokySalmonIngredientsList);
         recipeRepository.save(recipe3);
 
-        Recipe recipe4 = new Recipe("Garlic Scrambled Eggs",5,75,212,4,garlicScrambledEggsIngredientsList);
+        Recipe recipe4 = new Recipe("Garlic Scrambled Eggs",5,75,212,4);
+        recipe4.setIngredients(garlicScrambledEggsIngredientsList);
         recipeRepository.save(recipe4);
 
-        Recipe recipe5 = new Recipe("Soy Marinated Eggs",3,18,250,6,soyMarinatedEggsList);
+        Recipe recipe5 = new Recipe("Soy Marinated Eggs",3,18,250,6);
+        recipe5.setIngredients(soyMarinatedEggsList);
         recipeRepository.save(recipe5);
 
-        Recipe recipe6 = new Recipe("Smoked Salmon Toast",4,10,189,7,smokedSalmonToastIngredientsList);
+        Recipe recipe6 = new Recipe("Smoked Salmon Toast",4,10,189,7);
+        recipe6.setIngredients(smokedSalmonToastIngredientsList);
         recipeRepository.save(recipe6);
 
-        Recipe recipe7 = new Recipe("Spicy Ginger Pasta",5,75,212,4,spicyGingerPastaIngredientsList);
+        Recipe recipe7 = new Recipe("Spicy Ginger Pasta",5,75,212,4);
+        recipe7.setIngredients(spicyGingerPastaIngredientsList);
         recipeRepository.save(recipe7);
 
-        Recipe recipe8 = new Recipe("Ginger Soba Noodles",4,10,299,4,gingerSobaNoodlesIngredientsList);
+        Recipe recipe8 = new Recipe("Ginger Soba Noodles",4,10,299,4);
+        recipe8.setIngredients(gingerSobaNoodlesIngredientsList);
         recipeRepository.save(recipe8);
-
-
-
     }
 }

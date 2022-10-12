@@ -76,8 +76,7 @@ By specifying the above options you tell hibernate to save them to the database 
 
 //    CONSTRUCTOR::::::::::
 
-    public Recipe(String name, float averageRating,int time, int calories, int servings,
-                  List<Ingredient> ingredients) {
+    public Recipe(String name, float averageRating,int time, int calories, int servings) {
         this.name = name;
         this.averageRating = averageRating;
         this.time = time;
@@ -88,26 +87,26 @@ By specifying the above options you tell hibernate to save them to the database 
         this.isVegan = true;
         this.isVegetarian = true;
         this.isGlutenFree = true;
-        this.ingredients = ingredients;
+        this.ingredients = new ArrayList<>();
 
         setRequirements(); //calls method once ingredients are set
         // this needs to be called every time an ingredient is added
     }
-     public void setRequirements(){
+    public void setRequirements(){
         for (Ingredient ingredient: ingredients){
             if (!ingredient.isGlutenFree()){
                 this.isGlutenFree = false;
             }
-           if (!ingredient.isVegan()){
-               this.isVegan = false;
-               this.isVegetarian = false;
-           }
-           if (!ingredient.isVegetarian()){
-               this.isVegetarian = false;
-           }
+            if (!ingredient.isVegan()){
+                this.isVegan = false;
+                this.isVegetarian = false;
+            }
+            if (!ingredient.isVegetarian()){
+                this.isVegetarian = false;
+            }
         }
 
-     }
+    }
 
     // no arg constructor/ empty constructor
     public Recipe(){

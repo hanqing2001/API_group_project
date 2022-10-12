@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,9 @@ public class RecipeService {
 
     @Autowired
     IngredientRepository ingredientRepository;
+
+    @Autowired
+    IngredientService ingredientService;
 
     // get all recipes
 
@@ -47,8 +52,8 @@ public class RecipeService {
 
     // loop through ingredients and check if they are vegan
     // if one is not, set isVegan to be false
-    public void updateRequirements(Long id){
-        Recipe recipe = recipeRepository.findById(id).get();
+    public void updateRequirements(Recipe recipe){
+//        Recipe recipe = recipeRepository.findById(id).get();
         for (Ingredient ingredient: recipe.getIngredients()){
             if (!ingredient.isGlutenFree()){
                 recipe.setGlutenFree(false);
@@ -67,20 +72,20 @@ public class RecipeService {
     public List<Recipe> findByIsVegan(boolean isVegan){
         return recipeRepository.findByIsVegan(isVegan);
     }
-     public List<Recipe> findByIsVegetarian(boolean isVegetarian){
+    public List<Recipe> findByIsVegetarian(boolean isVegetarian){
         return recipeRepository.findByIsVegetarian(isVegetarian);
-     }
+    }
 
-     public List<Recipe> findByIsGlutenFree(boolean isGlutenFree){
+    public List<Recipe> findByIsGlutenFree(boolean isGlutenFree){
         return recipeRepository.findByIsGlutenFree(isGlutenFree);
-     }
+    }
 
-     public void deleteById(long id){
+    public void deleteById(long id){
         recipeRepository.deleteById(id);
-     }
+    }
 
 
-//
+    //
 //
 //
 //
@@ -106,10 +111,35 @@ public class RecipeService {
 //
 //Method to addRecipe:
     //    Method to: take recipe object + persist to repository
-    public Recipe saveRecipe(Recipe recipe) {
-        Recipe savedRecipe = recipeRepository.save(recipe); //gives it a row in the table and gives it an id
-        this.updateRequirements(savedRecipe.getId());
+    public Recipe saveRecipe(Recipe recipe, long[] ingredientsId) {
+        List<Ingredient> ingredients = addIngredient(ingredientsId);
+        recipe.setIngredients(ingredients);
+        recipeRepository.save(recipe); //gives it a row in the table and gives it an id
+        updateRequirements(recipe);
+        recipeRepository.save(recipe);
         return recipe; // can use if statements with returned value
+    }
+
+    public Recipe saveRecipeByIngredients(Recipe recipe, String[] ingredientsNames){
+        List<Ingredient> ingredients = new ArrayList<>();
+        for(String name : ingredientsNames){
+            Ingredient ingredient = ingredientRepository.findByName(name).get(0);
+            ingredients.add(ingredient);
+        }
+        recipe.setIngredients(ingredients);
+        recipeRepository.save(recipe); //gives it a row in the table and gives it an id
+        updateRequirements(recipe);
+        recipeRepository.save(recipe);
+        return recipe;
+    }
+
+    public List<Ingredient> addIngredient(long[] ingredientsId){
+        List<Ingredient> ingredients = new ArrayList<>();
+        for(Long id : ingredientsId){
+            Optional<Ingredient> ingredient = ingredientService.getIngredientById(id);
+            if(ingredient.isPresent()) ingredients.add(ingredient.get());
+        }
+        return ingredients;
     }
 //
 //    //Method to get dietaryRequirement(String):List<Recipe>
@@ -176,7 +206,5 @@ public class RecipeService {
 
 
 }
-
-
 
 
